@@ -4,13 +4,15 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './', // ✅ Indispensable pour que Netlify serve correctement les assets
+
   plugins: [
     react(),
     viteStaticCopy({
       targets: [
         {
-          src: 'src/Images',   // Dossier source contenant vos icônes
-          dest: 'assets'       // Les images seront copiées dans "assets/Images" dans le build
+          src: 'src/Images',
+          dest: 'assets'
         }
       ]
     })
