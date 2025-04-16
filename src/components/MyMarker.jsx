@@ -1,37 +1,70 @@
 // src/components/MyMarker.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Marker, Popup } from "react-leaflet";
 import PopupContent from "./PopupContent";
+import L from "leaflet";
 
-function MyMarker({ place }) {
-  // État local pour savoir si la popup est ouverte ou fermée
-  const [isOpen, setIsOpen] = useState(false);
+// Définir vos icônes personnalisées en utilisant des URL absolues (les images sont dans public/images)
+const myIcon = L.icon({
+  iconUrl: "/images/marker-icon.png",
+  iconRetinaUrl: "/images/marker-icon-2x.png",
+  shadowUrl: "/images/marker-shadow.png",
+  iconSize: [20, 34],
+  iconAnchor: [10, 34],
+  popupAnchor: [1, -30],
+});
 
-  // Gère le clic sur le Marker (ouvre le popup)
+const departIcon = L.icon({
+  iconUrl: "/images/depart-icon.png",
+  iconRetinaUrl: "/images/depart-icon-2x.png",
+  shadowUrl: "/images/marker-shadow.png",
+  iconSize: [40, 40],
+  iconAnchor: [15, 40],
+  popupAnchor: [0, -40],
+});
+
+function MyMarker({ place, selectedPlace, setSelectedPlace }) {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsSmallScreen(window.innerWidth < 500);
+    };
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
   const handleMarkerClick = () => {
-    setIsOpen(true);
+    setSelectedPlace(place);
   };
 
-  // Gère la fermeture (appelée par Leaflet ou par notre bouton "Fermer")
   const handleClose = () => {
-    setIsOpen(false);
+    setSelectedPlace(null);
   };
+
+  // Vérifier que les coordonnées existent
+  if (!place.latitude || !place.longitude) return null;
 
   return (
     <Marker
-      position={[place.lat, place.lng]} // Suppose que place contient lat & lng
+      position={[place.latitude, place.longitude]}
+      // Utiliser departIcon si le lieu a type "depart", sinon utiliser myIcon
+      icon={place.type === "depart" ? departIcon : myIcon}
       eventHandlers={{
-        click: handleMarkerClick, // ouvre la popup au clic sur le Marker
+        click: handleMarkerClick,
       }}
     >
-      {isOpen && (
+      {!isSmallScreen && selectedPlace && selectedPlace.id === place.id && (
         <Popup
-          maxWidth={350}         // Ajout
-          autoPan={true}         // Ajout
-          autoPanPadding={[50,50]}// Ajout
-          closeButton={false}    // Désactive la croix par défaut
-          closeOnClick={false}   // Évite la fermeture en cliquant sur la carte
-          onClose={handleClose}  // Permet à Leaflet de fermer la popup (ex. ESC)
+          maxWidth={350}
+          autoPan={true}
+          autoPanPadding={[80, 80]}
+          keepInView={true}
+          offset={[0, -10]}
+          closeButton={false}
+          closeOnClick={false}
+          onClose={handleClose}
         >
           <PopupContent place={place} onClose={handleClose} />
         </Popup>

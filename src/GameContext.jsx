@@ -12,6 +12,9 @@ export function GameProvider({ children }) {
   // Pour mémoriser les défis déjà validés
   const [completedChallenges, setCompletedChallenges] = useState([]);
 
+  // Pour déclencher un recentrage sur la carte
+  const [shouldRecenter, setShouldRecenter] = useState(false);
+
   // Fonction pour ajouter une question répondue
   const addAnsweredQuestion = (questionId) => {
     setAnsweredQuestions((prev) => [...prev, questionId]);
@@ -29,8 +32,6 @@ export function GameProvider({ children }) {
     setCompletedChallenges([]);
   };
 
-  // Vous pouvez également intégrer finishGame ici si besoin (via saveScore, etc.)
-
   return (
     <GameContext.Provider
       value={{
@@ -41,6 +42,8 @@ export function GameProvider({ children }) {
         completedChallenges,
         addCompletedChallenge,
         resetGame,
+        shouldRecenter,
+        setShouldRecenter,
       }}
     >
       {children}

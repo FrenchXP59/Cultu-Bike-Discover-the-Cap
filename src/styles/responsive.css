@@ -5,90 +5,92 @@
   position: fixed;
   z-index: 9999;
   background-color: #FDF3E7;
-  color: #333333;
+  color: #333;
   font-family: "Roboto", sans-serif;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 8px;
+  border-radius: 6px;
   display: inline-block;
   max-width: 250px;
   width: auto;
+  padding: 8px;
 }
 
 .endgame-button {
   position: fixed;
-  z-index: 10001;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: none;
+  top: 20px;
+  right: 20px;
+  z-index: 11000;
+  background-color: #f1c40f;
+  color: #333;
+  border: 1px solid #ccc;
   border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.endgame-button:hover {
+  background-color: #f39c12;
+  color: #fff;
 }
 
 /* ----------------------------------
-   .popup-content : on laisse Leaflet faire le fond/bordure
+   Popup content de base
 ---------------------------------- */
 .popup-content {
   background-color: transparent;
   border: none;
   padding: 12px;
+  pointer-events: auto;
 }
 
 /* ----------------------------------
-   DEBUG : Forcer le style direct sur .leaflet-popup aussi
+   Leaflet popup
 ---------------------------------- */
 .leaflet-popup {
   max-height: 90vh !important;
   overflow-y: auto !important;
   overflow-x: hidden !important;
+  margin-left: 0 !important;
+}
+.leaflet-popup[style*="margin-left"] {
+  margin-left: 0 !important;
 }
 
-/* ----------------------------------
-   Personnalisation de la coquille Leaflet
----------------------------------- */
 .leaflet-popup-content-wrapper {
   background-color: #FDF3E7 !important;
-  border: 2px solid #e74c3c !important;
-  border-radius: 8px !important;
+  border: 0px solid #e74c3c !important;
+  border-radius: 6px !important;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
-
-  /* Pour le debug : bordure rouge en pointillés */
-  border: 3px dashed red !important; 
-
-  /* Limites de taille */
-  min-height: 200px !important; 
-  max-height: 90vh !important; 
+  min-height: 200px !important;
+  max-height: 90vh !important;
   overflow-y: auto !important;
   overflow-x: hidden !important;
-
-  /* Césure des mots */
   overflow-wrap: break-word !important;
   word-wrap: break-word !important;
   white-space: normal !important;
 }
 
-/* La pointe du popup */
 .leaflet-popup-tip {
   background: #FDF3E7 !important;
   border: 2px solid #e74c3c !important;
 }
 
 /* ----------------------------------
-   Petits écrans : max-width: 768px
+   Media Queries
 ---------------------------------- */
 @media (max-width: 768px) {
   .scoreboard-container {
     font-size: 0.8rem;
     padding: 4px 6px;
   }
-
   .endgame-button {
-    padding: 6px 8px;
-    font-size: 0.8rem;
+    top: 20px;
+    right: 20px;
   }
-
-  /* Popup en mode mobile */
   .leaflet-popup-content-wrapper {
     max-width: 90vw !important;
   }
-
   .popup-content {
     width: 90vw;
     max-width: 350px;
@@ -96,96 +98,140 @@
   }
 }
 
-/* --- Mobiles portrait --- */
-@media (max-width: 768px) and (orientation: portrait) {
-  .scoreboard-container {
-    bottom: 60px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 160px; 
-    text-align: center;
-  }
-
-  .endgame-button {
-    bottom: 10px;
-    left: 10px;
-    width: 150px;
+@media (max-width: 414px) {
+  .leaflet-popup .leaflet-popup-content {
+    max-width: 260px !important;
+    padding-right: 8px !important;
   }
 }
 
-/* --- Mobiles paysage --- */
-@media (max-width: 768px) and (orientation: landscape) {
-  .scoreboard-container {
-    bottom: 60px;
-    left: 10px;
-    transform: none;
-    width: 140px;
-    text-align: left;
-  }
-
-  .endgame-button {
-    bottom: 10px;
-    left: 10px;
-    width: 140px;
-  }
-}
-
-/* ----------------------------------
-   Écrans plus larges : min-width: 769px
----------------------------------- */
-@media (min-width: 769px) {
-  .scoreboard-container {
-    top: 10px;
-    left: 10px;
-    padding: 8px 16px;
-    font-size: 1.1rem;
-  }
-
-  .endgame-button {
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    font-size: 1rem;
-  }
-
-  /* Sur desktop/tablette large */
-  .popup-content {
-    min-width: 220px;
-    max-width: 400px;
-    margin: 0 auto;
-  }
-}
-
-/* ----------------------------------
-   ÉTAPE IMPORTANTE :
-   Surcharger la width imposée par Leaflet
-   et ajouter un padding à droite
----------------------------------- */
-.leaflet-popup .leaflet-popup-content {
-  width: auto !important;
-  max-width: 350px !important;  /* On agrandit à 350px pour plus de place */
-  margin-right: 0 !important;
-  padding-right: 12px !important; /* Espace interne à droite pour éviter la coupe */
-
-  overflow-wrap: break-word !important;
-  white-space: normal !important;
-}
 @media (max-width: 375px) {
   .leaflet-popup .leaflet-popup-content {
-    max-width: 280px !important; 
-    padding-right: 8px !important; /* on réduit un peu l'espace interne */
+    max-width: 240px !important;
+    padding-right: 6px !important;
   }
 }
-@media (max-width: 400px) {
-  /* Pour TOUT écran <= 400px de large */
-  .leaflet-popup .leaflet-popup-content {
-    max-width: 280px !important; 
-    padding-right: 8px !important;
-  }
+
+/* ----------------------------------
+   Boutons
+---------------------------------- */
+.popup-close-button,
+.button-en-savoir-plus,
+.button-validation,
+.button-defi,
+.button-qcm,
+.endgame-button {
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
-@media (max-width: 400px) and (orientation: portrait) {
-  .leaflet-popup .leaflet-popup-content {
-    max-width: 280px !important;
-    padding-right: 8px !important;
-  }
+
+.popup-close-button {
+  display: block;
+  margin: 24px auto 0 auto;
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+}
+.popup-close-button:hover {
+  background-color: #f1f1f1;
+}
+
+.button-blue {
+  padding: 10px 16px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.button-blue:hover {
+  background-color: #2980b9;
+}
+
+.button-orange {
+  padding: 10px 16px;
+  background-color: #e67e22;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.button-orange:hover {
+  background-color: #d35400;
+}
+
+.button-grey {
+  padding: 10px 16px;
+  background-color: #ecf0f1;
+  color: #333;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.button-grey:hover {
+  background-color: #bdc3c7;
+}
+
+/* ----------------------------------
+   État validé
+---------------------------------- */
+.button-validation.validated,
+.button-defi.validated {
+  background-color: #2ecc71 !important;
+  cursor: default;
+  opacity: 0.7;
+}
+
+/* ----------------------------------
+   Autres éléments
+---------------------------------- */
+.feedback-message {
+  font-style: italic;
+  color: #2c3e50;
+  margin-top: 10px;
+}
+
+.bold-input {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.popup-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.popup-question {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.popup-defi {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.challenge-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+/* Style pour l’état de recherche de géolocalisation */
+.geo-message {
+  margin-top: 10px;
+  font-style: italic;
+  color: #2c3e50;
 }

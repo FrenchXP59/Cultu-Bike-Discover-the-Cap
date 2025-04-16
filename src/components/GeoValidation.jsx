@@ -1,15 +1,15 @@
 // src/components/GeoValidation.jsx
 import React, { useContext, useState } from "react";
 import { GameContext } from "../GameContext.jsx";
-import { playSound } from "../utils/soundManager"; // <-- Import de la fonction playSound
+import { playSound } from "../utils/soundManager";
 
 const GeoValidation = ({ targetLatitude, targetLongitude, pointReward = 1 }) => {
   const { score, setScore } = useContext(GameContext);
   const [message, setMessage] = useState("");
+  const [validated, setValidated] = useState(false);
 
-  // Fonction de calcul de la distance en mètres (formule de Haversine)
   const getDistanceFromLatLonInMeters = (lat1, lon1, lat2, lon2) => {
-    const R = 6371000; // Rayon de la Terre en mètres
+    const R = 6371000;
     const toRad = (x) => (x * Math.PI) / 180;
     const dLat = toRad(lat2 - lat1);
     const dLon = toRad(lon2 - lon1);
@@ -24,11 +24,12 @@ const GeoValidation = ({ targetLatitude, targetLongitude, pointReward = 1 }) => 
   };
 
   const checkProximity = () => {
-    // On joue le son de clic au moment du clic sur le bouton
+    if (validated) return;
+
     playSound("buttonClick");
 
     if (!navigator.geolocation) {
-      setMessage("La géolocalisation n'est pas supportée par votre navigateur.");
+      setMessage("🚫 La géolocalisation n'est pas supportée par votre navigateur.");
       return;
     }
 
@@ -41,29 +42,39 @@ const GeoValidation = ({ targetLatitude, targetLongitude, pointReward = 1 }) => 
           targetLatitude,
           targetLongitude
         );
-        console.log("Distance:", distance, "m");
+        console.log("📍 Distance mesurée :", distance, "m");
 
-        if (distance <= 200) {
+        if (distance <= 300) {
           setScore((prevScore) => prevScore + pointReward);
-          setMessage(
-            `Bonus point : vous êtes proche ! (${Math.round(distance)}m)`
-          );
+          setMessage(`✅ Bonus point ! C'est gagné : vous êtes proche ! (${Math.round(distance)}m)`);
+          setValidated(true);
         } else {
-          setMessage(
-            `Vous êtes à ${Math.round(distance)}m du point. Approchez-vous pour obtenir des points.`
-          );
+          setMessage(`📏 Vous êtes à ${Math.round(distance)}m du point. Approchez-vous pour obtenir des points.`);
         }
       },
       (error) => {
-        setMessage("Erreur lors de la récupération de votre position.");
+        console.error("Erreur géolocalisation :", error);
+        setMessage("❌ Erreur lors de la récupération de votre position.");
+      },
+      {
+        enableHighAccuracy: true,
+        maximumAge: 5000,    // ← 🔁 Position récente
+        timeout: 10000       // ← ⏱️ Réagit vite en cas de souci
       }
     );
   };
 
   return (
     <div>
-      <button onClick={checkProximity}>Valider ma position</button>
-      {message && <p>{message}</p>}
+      <button 
+        onClick={checkProximity} 
+        disabled={validated}
+        className={`button-blue ${validated ? "validated" : ""}`}
+      >
+        {validated ? "✅ Position validée !" : "📍 Valider ma position"}
+      </button>
+
+      {message && <p className="feedback-message">{message}</p>}
     </div>
   );
 };

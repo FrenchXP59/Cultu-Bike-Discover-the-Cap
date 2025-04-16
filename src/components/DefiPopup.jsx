@@ -1,7 +1,7 @@
 // src/components/DefiPopup.jsx
 import React, { useState, useContext } from "react";
 import { GameContext } from "../GameContext.jsx";
-import { playSound } from "../utils/soundManager";  // Import
+import { playSound } from "../utils/soundManager";
 
 const DefiPopup = ({ place }) => {
   const { score, setScore, completedChallenges, addCompletedChallenge } = useContext(GameContext);
@@ -13,29 +13,27 @@ const DefiPopup = ({ place }) => {
     if (!isChallengeDone) {
       setScore(score + 2);
       addCompletedChallenge(place.id);
-      setFeedbackMessage("Défi complété, +2 points !");
-      playSound("goodAnswer");  // Vous pouvez choisir un son spécifique ici si vous voulez
+      setFeedbackMessage("✅ Défi complété, +2 points !");
+      playSound("goodAnswer");
     } else {
-      setFeedbackMessage("Défi déjà validé.");
+      setFeedbackMessage("🔁 Défi déjà validé.");
       playSound("buttonClick");
     }
   };
 
   return (
     <div style={{ marginTop: "10px" }}>
-      <p><strong>Défi :</strong> {place.defi}</p>
-      {isChallengeDone ? (
-        <p style={{ color: "green" }}>Défi déjà validé.</p>
-      ) : (
-        <button onClick={() => { playSound("buttonClick"); handleDefiComplete(); }}>
-          J'ai fait le défi
-        </button>
-      )}
-      {feedbackMessage && (
-        <p style={{ marginTop: "10px", fontStyle: "italic" }}>
-          {feedbackMessage}
-        </p>
-      )}
+      <p className="popup-defi"><strong>🎯 Défi :</strong> {place.defi}</p>
+
+      <button
+        className={`button-orange ${isChallengeDone ? "validated" : ""}`}
+        onClick={() => { playSound("buttonClick"); handleDefiComplete(); }}
+        disabled={isChallengeDone}
+      >
+        {isChallengeDone ? "✅ Défi validé !" : "🚀 J'ai fait le défi"}
+      </button>
+
+      {feedbackMessage && <p className="feedback-message">{feedbackMessage}</p>}
     </div>
   );
 };

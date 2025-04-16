@@ -18,3 +18,15 @@
   transform: translateY(-10px);
   transition: opacity 300ms, transform 300ms;
 }
+/* ----------------------------------
+   Réponse utilisateur en gras
+---------------------------------- */
+  .bold-answer {
+    font-weight: bold !important;
+    color: #2c3e50 !important; /* Ajuste si tu veux être sûr que la couleur s'applique également */
+  }
+/* Texte en gras directement dans l'input */
+.bold-input {
+  font-weight: bold !important;
+  color: #2c3e50; /* optionnel, pour cohérence visuelle */
+}

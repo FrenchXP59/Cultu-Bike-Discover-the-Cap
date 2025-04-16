@@ -36,7 +36,7 @@ export const PLACES_DATA = [
         bonne_reponse: "Anagramme de Cornélie"
       }
     ],
-    defi: "Trouvez et photographiez trois espèces différentes de roses dans les jardins de la villa.",
+    defi: "Si la villa est ouverte, photographiez trois roses différentes dans le jardin. Identifiez-les ou inventez leurs noms.",
     infoShort: "Villa Eilenroc est un lieu emblématique dont le nom cache un jeu de lettres surprenant.",
     infoLong:
       "Villa Eilenroc est un joyau historique du Cap d'Antibes, dont le nom mystérieux, une anagramme de 'Cornélie', invite les visiteurs à découvrir une histoire riche en anecdotes et en légendes. Construite en 1867 par l’architecte Charles Garnier pour un riche hollandais, elle témoigne du faste de la Belle Époque. Située dans un cadre idyllique, la villa offre des jardins luxuriants où les roses s’épanouissent, symbolisant la beauté intemporelle de cette demeure. Plongez dans son univers et laissez-vous séduire par son charme unique.",
@@ -63,7 +63,7 @@ export const PLACES_DATA = [
         bonne_reponse: "Jules Verne"
       }
     ],
-    defi: "Décrivez en quelques mots la vue depuis la villa, en imitant le style de Jules Verne.",
+    defi: "Observez attentivement le perron de la villa. Que symbolisent les éléments décoratifs visibles ? Indice : ils rappellent une invention célèbre au XIXe siècle…",
     infoShort: "Villa Les Chênes Verts a accueilli Jules Verne et offre une vue panoramique inspirante.",
     infoLong:
       "Située au cœur du Cap d'Antibes, la Villa Les Chênes Verts est célèbre pour avoir accueilli Jules Verne, l’un des écrivains visionnaires les plus marquants du XIXe siècle. Face à une mer scintillante, ce havre de paix lui offrait un cadre propice à l’écriture et à la réflexion. La vue imprenable sur la Méditerranée et la végétation luxuriante du domaine ont nourri son imaginaire, influençant peut-être certaines de ses descriptions maritimes. Laissez-vous porter par l’histoire de cette villa, témoin discret du passage d’un génie littéraire.",
@@ -90,8 +90,8 @@ export const PLACES_DATA = [
         bonne_reponse: "Jardin d’acclimatation"
       }
     ],
-    defi: "Identifiez et photographiez trois plantes exotiques dans le jardin.",
-    infoShort: "Villa Thuret se distingue par son jardin d’acclimatation exceptionnel, un havre de biodiversité.",
+    defi: " Depuis la grille ou le chemin, tentez d’observer et photographier trois essences végétales différentes. Si le jardin est ouvert, cherchez des plantes exotiques (panneaux présents). Sinon, notez ce que vous apercevez et imaginez leur origine.",
+    infoShort: "Villa Thuret se distingue par son cadre exceptionnel, un havre de biodiversité.",
     infoLong:
       "La Villa Thuret abrite un jardin d’acclimatation unique qui sert de laboratoire botanique en plein air. Créé au XIXe siècle par le botaniste Gustave Thuret, ce lieu fascinant a été conçu pour tester l’acclimatation de plantes exotiques sur la Côte d’Azur. Aujourd’hui, il rassemble plus de 2 500 espèces venues des quatre coins du monde, offrant aux visiteurs une promenade immersive à travers une diversité végétale exceptionnelle. Chaque visite réserve de nouvelles découvertes, entre science et émerveillement.",
     photo: "/images/villas/villa-thuret.jpg",
@@ -171,7 +171,7 @@ export const PLACES_DATA = [
         bonne_reponse: "Pavillon de chasse"
       }
     ],
-    defi: "Prenez une photo du célèbre rocher qui a donné son nom à l’hôtel du Cap-Eden-Roc.",
+    defi: "Dessinez ou photographiez le portail ou les pins parasols qui cachent la villa. Une autre façon d’immortaliser un lieu mythique… sans le voir vraiment.",
     infoShort: "Villa Soleil, initialement pavillon de chasse, est devenue un symbole du luxe au Cap-Eden-Roc.",
     infoLong:
       "Nichée au cœur du Cap-Eden-Roc, la Villa Soleil a connu une transformation spectaculaire. Conçue à l'origine comme pavillon de chasse pour Auguste de Villemessant, fondateur du Figaro, elle fut progressivement agrandie avant de devenir l'un des hôtels les plus emblématiques de la Côte d'Azur. Son architecture élégante et ses terrasses ouvertes sur la Méditerranée en font un lieu d’exception, prisé par les célébrités et la haute société depuis plus d'un siècle.",
@@ -233,31 +233,74 @@ export const PLACES_DATA = [
     photo: "/images/villas/port-de-l-olivette.jpg",
     infoPlus: "Le Port de l’Olivette est entretenu par une association de passionnés qui veille à la conservation des pointus et au respect des traditions maritimes. Chaque hiver, ces bateaux sont sortis de l’eau pour être soigneusement restaurés et entretenus par leurs propriétaires, perpétuant un savoir-faire artisanal transmis de génération en génération. Contrairement aux ports modernes, l’Olivette est exclusivement réservé aux embarcations traditionnelles, offrant un cadre préservé et intemporel. Son ambiance chaleureuse et ses reflets colorés au coucher du soleil en font l’un des plus beaux joyaux maritimes de la Côte d’Azur."
   },
-  {
-    id: 9,
-    lieu: "Villa La Vigie",
-    latitude: 43.56457,
-    longitude: 7.11559,
-    questions: [
-      {
-        id: 901,
-        question: "Quel célèbre couturier a possédé cette villa pendant plus de deux décennies ?",
-        reponses_acceptables: ["Karl Lagerfeld", "Lagerfeld", "Karl", "Karl L.", "Le couturier Karl Lagerfeld", "Le styliste Karl Lagerfeld", "Lagerfeld Karl", "Le créateur Karl Lagerfeld"],
-        indice: "Il est connu pour son style monochrome et ses lunettes noires.",
-        qcm: [
-          "Yves Saint Laurent",
-          "Christian Dior",
-          "Karl Lagerfeld",
-          "Coco Chanel"
-        ],
-        bonne_reponse: "Karl Lagerfeld"
-      }
-    ],
-    defi: "Prenez une photo de la villa mettant en valeur sa position dominante sur la mer.",
-    infoShort: "Villa La Vigie, autrefois propriété d'un grand couturier, offre une vue imprenable sur la Méditerranée.",
-    infoLong:
-      "Perchée sur un promontoire dominant la Méditerranée, la Villa La Vigie est une demeure d’exception qui fut la résidence du célèbre couturier Karl Lagerfeld. Ce joyau architectural allie élégance classique et modernité, avec de vastes terrasses offrant un panorama spectaculaire sur la mer. Loin du tumulte, cette villa incarne un art de vivre sophistiqué, mêlant luxe, histoire et inspiration artistique dans un cadre idyllique.",
-    photo: "/images/villas/villa-la-vigie.jpg",
-    infoPlus: "Longtemps utilisée comme résidence d’été par Karl Lagerfeld, la Villa La Vigie reflète le goût du créateur pour le raffinement et l’exclusivité. Restaurée avec soin, elle conserve des éléments architecturaux remarquables tout en offrant des équipements luxueux. Son emplacement privilégié, entouré de pins et de jardins méditerranéens, en fait un lieu prisé par les amateurs de sérénité et d’élégance. Aujourd’hui, cette demeure iconique continue d’attirer l’attention, témoignant de son riche passé et de l’empreinte laissée par son illustre propriétaire."
-  }
-];
+    {
+      id: 9,
+      lieu: "Villa La Vigie",
+      latitude: 43.564188,
+      longitude: 7.115879,
+      questions: [
+        {
+          id: 901,
+          question: "Quel célèbre couturier a possédé cette villa pendant plus de une décennie ?",
+          reponses_acceptables: [
+            "Karl Lagerfeld",
+            "Lagerfeld",
+            "Karl",
+            "Karl L.",
+            "Le couturier Karl Lagerfeld",
+            "Le styliste Karl Lagerfeld",
+            "Lagerfeld Karl",
+            "Le créateur Karl Lagerfeld"
+          ],
+          indice: "Il est connu pour son style monochrome et ses lunettes noires.",
+          qcm: [
+            "Yves Saint Laurent",
+            "Christian Dior",
+            "Karl Lagerfeld",
+            "Coco Chanel"
+          ],
+          bonne_reponse: "Karl Lagerfeld"
+        }
+      ],
+      defi: "Depuis Port Crouton, empruntez le sentier du littoral en direction de la Villa La Vigie. Observez-la depuis un angle différent de la route principale. Prenez une photo ou réalisez un croquis de ce point de vue inhabituel. Bonus : imaginez le shooting de mode parfait dans ce décor.",
+      infoShort: "Villa La Vigie, autrefois propriété d'un grand couturier, offre une vue imprenable sur la Méditerranée.",
+      infoLong:
+        "Construite en 1902 par Sir William Ingram, la villa séduit par ses volumes, son jardin exotique et sa vue sur la Méditerranée. Karl Lagerfeld y installa sa résidence à partir de 1986, y exposant ses collections dans un décor à son image : classique, exigeant, hors du temps.. Ce joyau architectural allie élégance classique et modernité, avec de vastes terrasses offrant un panorama spectaculaire sur la mer. Loin du tumulte, cette villa incarne un art de vivre sophistiqué, mêlant luxe, histoire et inspiration artistique dans un cadre idyllique.",
+      photo: "/images/villas/villa-la-vigie.jpg",
+      infoPlus:
+        "Longtemps utilisée comme résidence d’été par Karl Lagerfeld, la Villa La Vigie reflète le goût du créateur pour le raffinement et l’exclusivité. Restaurée avec soin, elle conserve des éléments architecturaux remarquables tout en offrant des équipements luxueux. Son emplacement privilégié, entouré de pins et de jardins méditerranéens, en fait un lieu prisé par les amateurs de sérénité et d’élégance. Aujourd’hui, cette demeure iconique continue d’attirer l’attention, témoignant de son riche passé et de l’empreinte laissée par son illustre propriétaire."
+    },
+    {
+      id: 10,
+      lieu: "Villa L'Olivette",
+      latitude: 43.551153,
+      longitude: 7.121158,
+      questions: [
+        {
+          id: 1001,
+          question: "Quel artiste comique, connu sous un nom de scène facétieux, a acheté la villa L'Olivette en 1919 ?",
+          reponses_acceptables: [
+            "Dranem",
+            "Armand Ménard",
+            "Armand Menard",
+            "Armand Ménard dit Dranem"
+          ],
+          indice: "Son vrai nom est Armand Ménard, mais il a choisi un pseudonyme en anacyclique.",
+          qcm: [
+            "Maurice Chevalier",
+            "Armand 'Dranem' Ménard",
+            "Charles Trenet",
+            "Henri Garat"
+          ],
+          bonne_reponse: "Armand 'Dranem' Ménard"
+        }
+      ],
+      defi: "Prenez une pose comique façon music-hall devant l’un des visages sculptés. Vous êtes le Dranem du jour ",
+      infoShort: "Construite en 1903, L'Olivette fut la demeure de Dranem, un artiste comique au grand cœur.",
+      infoLong:
+        "La villa L’Olivette, édifiée en 1903 par un peintre décorateur, fut acquise en 1919 par le célèbre chanteur fantaisiste Dranem (Armand Ménard). Située face à la charmante plage de l’Olivette, elle marie simplicité et convivialité, reflétant l’âme généreuse de son propriétaire d’autrefois. Entourée d’un jardin isolé, la villa offrait un havre de paix où Dranem, sa famille et ses amis profitaient de moments de détente, de parties de cartes, ainsi que de spectacles impromptus. Plusieurs bustes représentant son visage rieur ornent encore les piliers du portail, rappelant l’esprit chaleureux qui imprègne ce lieu historique.",
+      photo: "/images/villas/l-olivette.jpg",
+      infoPlus:
+        "Après le décès de Dranem en 1935, la villa connut divers propriétaires. Au fil du temps, L’Olivette a préservé son charme discret et sa vue imprenable sur la mer. Les actuels occupants veillent à conserver les bustes de Dranem, témoignages de l’empreinte joviale qu’il a laissée. Le port de l’Olivette tout proche, avec ses pointus colorés, ajoute au caractère pittoresque du site, faisant de cette demeure un précieux héritage du Cap d’Antibes."
+    }
+  ]

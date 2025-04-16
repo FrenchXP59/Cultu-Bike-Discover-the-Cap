@@ -6,7 +6,8 @@ import DefiPopup from "./DefiPopup";
 import DetailModal from "./DetailModal.jsx";
 import { playSound } from "../utils/soundManager";
 import "./DetailModal.css";
-import GeoValidation from "./GeoValidation";  // Composant de géolocalisation
+import "../styles/responsive.css";
+import GeoValidation from "./GeoValidation";
 
 const PopupContent = React.memo(({ place, onClose }) => {
   const [showModal, setShowModal] = useState(false);
@@ -22,10 +23,6 @@ const PopupContent = React.memo(({ place, onClose }) => {
     setShowModal(false);
   };
 
-  const handleQuestionDone = () => {
-    setQuestionDone(true);
-  };
-
   return (
     <div
       className="popup-content"
@@ -33,7 +30,7 @@ const PopupContent = React.memo(({ place, onClose }) => {
         backgroundColor: "transparent",
         border: "none",
         padding: "12px",
-        pointerEvents: "auto" // Assure que les clics sont bien transmis
+        pointerEvents: "auto"
       }}
     >
       <h4 style={{ display: "flex", alignItems: "center", marginTop: 0 }}>
@@ -47,53 +44,30 @@ const PopupContent = React.memo(({ place, onClose }) => {
         </p>
       )}
 
-      {/* Questions (avec indice/QCM) */}
-      <QuestionPopup place={place} onQuestionDone={handleQuestionDone} />
+      <QuestionPopup place={place} onQuestionDone={() => setQuestionDone(true)} />
 
-      {/* Défis éventuels */}
-      {place.defi && <DefiPopup place={place} />}
+      <div className="challenge-buttons">
+        {place.defi && <DefiPopup place={place} />}
+        <GeoValidation
+          targetLatitude={place.latitude}
+          targetLongitude={place.longitude}
+          pointReward={1}
+        />
+      </div>
 
-      {/* Bouton de validation de la géolocalisation */}
-      <GeoValidation
-        targetLatitude={place.latitude}
-        targetLongitude={place.longitude}
-        pointReward={1}
-      />
-
-      {/* Bouton “En savoir plus” (si question terminée + infoLong/photo) */}
       {(place.infoLong || place.photo) && questionDone && (
         <button
           onClick={handleOpenModal}
-          style={{
-            padding: "8px 12px",
-            backgroundColor: "#f1c40f",
-            color: "#333",
-            border: "none",
-            borderRadius: "4px",
-            cursor: "pointer",
-            fontSize: "0.9rem",
-            marginBottom: "8px",
-          }}
+          className="button-en-savoir-plus"
         >
           En savoir plus
         </button>
       )}
+
       <DetailModal place={place} onClose={handleCloseModal} show={showModal} />
 
-      {/* Bouton “Fermer” pour replier la popup */}
-      <button
-        onClick={onClose}
-        style={{
-          display: "inline-block",
-          marginTop: "12px",
-          background: "transparent",
-          border: "none",
-          fontSize: "0.9rem",
-          cursor: "pointer",
-          color: "#333",
-        }}
-      >
-        Fermer
+      <button onClick={onClose} className="popup-close-button" style={{ display: "block", margin: "24px auto 0 auto" }}>
+        🔙 Retour à la carte
       </button>
     </div>
   );

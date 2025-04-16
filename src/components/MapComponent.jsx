@@ -1,103 +1,57 @@
 // src/components/MapComponent.jsx
-import React, { useState, useEffect, memo } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import L from "leaflet";
+import React, { useState, useEffect, memo, useContext } from "react";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import L from "leaflet";
 import { PLACES_DATA } from "../data/placesData";
-import PopupContent from "./PopupContent";
+import MyMarker from "./MyMarker";
+import BottomSheet from "./BottomSheet";
+import RecenterMap from "../utils/RecenterMap";
+import { GameContext } from "../GameContext";
 
-// Icônes standard
-import markerIcon from "../Images/marker-icon.png";
-import markerIcon2x from "../Images/marker-icon-2x.png";
-import markerShadow from "../Images/marker-shadow.png";
-
-// Icône standard pour les lieux classiques
+// Configuration des icônes personnalisées en utilisant des URL absolues (car les images sont dans public/images)
 const myIcon = L.icon({
-  iconUrl: markerIcon,
-  iconRetinaUrl: markerIcon2x,
-  shadowUrl: markerShadow,
+  iconUrl: "/images/marker-icon.png",
+  iconRetinaUrl: "/images/marker-icon-2x.png",
+  shadowUrl: "/images/marker-shadow.png",
   iconSize: [20, 34],
   iconAnchor: [10, 34],
   popupAnchor: [1, -30],
 });
 
-// Icône pour le point de départ
-import departIconImg from "../Images/depart-icon.png";
-import departIcon2xImg from "../Images/depart-icon-2x.png";
-
 const departIcon = L.icon({
-  iconUrl: departIconImg,
-  iconRetinaUrl: departIcon2xImg,
-  shadowUrl: markerShadow,
+  iconUrl: "/images/depart-icon.png",
+  iconRetinaUrl: "/images/depart-icon-2x.png",
+  shadowUrl: "/images/marker-shadow.png",
   iconSize: [40, 40],
   iconAnchor: [15, 40],
   popupAnchor: [0, -40],
 });
 
-// Icône pour la position de l'utilisateur
 const userIcon = L.icon({
-  iconUrl: markerIcon,
-  iconRetinaUrl: markerIcon2x,
-  shadowUrl: markerShadow,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-});
-
-// Composant pour les marqueurs statiques (lieux) et la popup
-const StaticMarkers = memo(({ selectedPlace, setSelectedPlace }) => (
-  <>
-    {PLACES_DATA.map((place) => {
-      const iconToUse = place.type === "depart" ? departIcon : myIcon;
-      return (
-        <Marker
-          key={place.id}
-          position={[place.latitude, place.longitude]}
-          icon={iconToUse}
-          eventHandlers={{
-            click: () => setSelectedPlace(place),
-          }}
-        />
-      );
-    })}
-
-    {selectedPlace && (
-      <Popup
-        position={[selectedPlace.latitude, selectedPlace.longitude]}
-        maxWidth={350}
-        autoPan={true}
-        autoPanPadding={[20, 20]}
-        autoClose={false}
-        closeOnClick={false}
-        closeButton={false}
-        onClose={() => setSelectedPlace(null)}
-      >
-        <PopupContent
-          place={selectedPlace}
-          onClose={() => setSelectedPlace(null)}
-        />
-      </Popup>
-    )}
-  </>
-));
-
-// Composant pour la position utilisateur (mis à jour en temps réel)
-const UserLocationMarker = memo(({ userLocation }) => {
-  if (!userLocation) return null;
-
-  // Variante sans popup (pour éviter tout recouvrement)
-  return (
-    <Marker
-      position={[userLocation.lat, userLocation.lng]}
-      icon={userIcon}
-      zIndexOffset={-1000} // On place ce marker en dessous des marqueurs fixes
-    />
-  );
+  iconUrl: "/images/myLocIcon.png",
+  iconRetinaUrl: "/images/myLocIconx2.png",
+  shadowUrl: "/images/marker-shadow.png",
+  iconSize: [25, 25],
+  iconAnchor: [12, 25],
+  popupAnchor: [1, -24],
+  shadowSize: [25, 25],
 });
 
 const MapComponent = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const { shouldRecenter, setShouldRecenter } = useContext(GameContext);
+
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsSmallScreen(window.innerWidth < 500);
+    };
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
 
   useEffect(() => {
     if (!navigator.geolocation) {
@@ -108,7 +62,6 @@ const MapComponent = () => {
     const watchId = navigator.geolocation.watchPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
-        console.log("Position utilisateur :", latitude, longitude);
         setUserLocation({ lat: latitude, lng: longitude });
       },
       (error) => {
@@ -116,8 +69,8 @@ const MapComponent = () => {
       },
       {
         enableHighAccuracy: true,
-        maximumAge: 10000,
-        timeout: 30000,
+        maximumAge: 5000,
+        timeout: 10000,
       }
     );
 
@@ -128,27 +81,40 @@ const MapComponent = () => {
 
   return (
     <div style={{ position: "relative", width: "100%", height: "100vh" }}>
-      <MapContainer
-        center={[43.5670, 7.1200]}
-        zoom={14}
-        style={{ height: "100%", width: "100%" }}
-      >
+      <MapContainer center={[43.5670, 7.1200]} zoom={14} style={{ height: "100%", width: "100%" }}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&copy; OpenStreetMap contributors"
         />
 
-        {/* Marqueurs statiques + popup */}
-        <StaticMarkers
-          selectedPlace={selectedPlace}
-          setSelectedPlace={setSelectedPlace}
-        />
+        {PLACES_DATA.map((place) => (
+          <MyMarker
+            key={place.id}
+            place={place}
+            selectedPlace={selectedPlace}
+            setSelectedPlace={setSelectedPlace}
+          />
+        ))}
 
-        {/* Marqueur position utilisateur */}
-        <UserLocationMarker userLocation={userLocation} />
+        {userLocation && (
+          <Marker position={[userLocation.lat, userLocation.lng]} icon={userIcon} zIndexOffset={-1000} />
+        )}
+
+        {shouldRecenter && (
+          <RecenterMap
+            lat={43.550}
+            lng={7.130}
+            trigger={true}
+            onDone={() => setShouldRecenter(false)}
+          />
+        )}
       </MapContainer>
+
+      {isSmallScreen && selectedPlace && (
+        <BottomSheet place={selectedPlace} onClose={() => setSelectedPlace(null)} />
+      )}
     </div>
   );
 };
 
-export default MapComponent;
+export default memo(MapComponent);

@@ -1,12 +1,11 @@
 // src/components/ScoreRanking.jsx
 import React, { useEffect, useState } from "react";
 
-const ScoreRanking = ({ onClose }) => {
+const ScoreRanking = ({ onRestart, onReturnToGame }) => {
   const [scores, setScores] = useState([]);
 
   useEffect(() => {
     const storedScores = JSON.parse(localStorage.getItem("gameScores")) || [];
-    // Tri du plus grand au plus petit
     storedScores.sort((a, b) => b.score - a.score);
     setScores(storedScores);
   }, []);
@@ -15,42 +14,54 @@ const ScoreRanking = ({ onClose }) => {
     <div
       style={{
         padding: "16px",
-        // Si vous avez un design system avec var(--color-bg), var(--color-text)
-        // sinon utilisez vos couleurs pastel direct.
-        backgroundColor: "#FAE3D9", // #FAE3D9 par ex.
-        color: "#333",         // #333
-        minHeight: "100vh",                 // occupe tout l'écran
+        backgroundColor: "#FAE3D9",
+        color: "#333",
+        minHeight: "100vh",
       }}
     >
-      <h2>Classement des Scores</h2>
+      <h2>🏆 Classement des Scores</h2>
       {scores.length === 0 ? (
         <p>Aucun score enregistré pour le moment.</p>
       ) : (
         <ol>
           {scores.map((item, index) => (
             <li key={index} style={{ marginBottom: "8px" }}>
-              <strong>{item.score}</strong> points – {item.time} secondes –{" "}
+              <strong>{item.score}</strong> points – {item.time} secondes – {" "}
               {new Date(item.date).toLocaleString()}
             </li>
           ))}
         </ol>
       )}
 
-      {/* Bouton Fermer / Retour */}
-      <button
-        onClick={onClose}
-        style={{
-          marginTop: "16px",
-          padding: "8px 16px",
-          border: "none",
-          borderRadius: "4px",
-          cursor: "pointer",
-          backgroundColor: "#FFB6B9", // par ex. #FFB6B9
-          color: "#fff",
-        }}
-      >
-        Fermer
-      </button>
+      <div style={{ marginTop: "24px", display: "flex", gap: "10px", flexWrap: "wrap" }}>
+        <button
+          onClick={onReturnToGame}
+          style={{
+            padding: "10px 20px",
+            backgroundColor: "#95a5a6",
+            color: "white",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+          }}
+        >
+          🗺️ Retour à la carte
+        </button>
+
+        <button
+          onClick={onRestart}
+          style={{
+            padding: "10px 20px",
+            backgroundColor: "#f39c12",
+            color: "white",
+            border: "none",
+            borderRadius: "6px",
+            cursor: "pointer",
+          }}
+        >
+          🔄 Rejouer une partie
+        </button>
+      </div>
     </div>
   );
 };

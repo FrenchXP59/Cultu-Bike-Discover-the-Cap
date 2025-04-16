@@ -2,7 +2,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { GameContext } from "../GameContext.jsx";
 import { isCorrectAnswer } from "../utils/stringUtils";
-import { playSound } from "../utils/soundManager";  // Ajout de l'import
+import { playSound } from "../utils/soundManager";
 
 const QuestionPopup = ({ place, onQuestionDone }) => {
   const { score, setScore, answeredQuestions, addAnsweredQuestion } = useContext(GameContext);
@@ -11,16 +11,20 @@ const QuestionPopup = ({ place, onQuestionDone }) => {
   const [errorCount, setErrorCount] = useState(0);
   const [questionDone, setQuestionDone] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState("");
+  const [validatedAnswer, setValidatedAnswer] = useState("");
 
   useEffect(() => {
     setUserAnswer("");
     setErrorCount(0);
     setQuestionDone(false);
     setFeedbackMessage("");
+    setValidatedAnswer("");
   }, [place]);
 
   const question = place.questions?.[0];
-  if (!question) return <p>Aucune question pour ce lieu.</p>;
+  if (!question) {
+    return <p>Aucune question pour ce lieu.</p>;
+  }
 
   const uniqueQuestionId = `${place.id}-${question.id}`;
   const isAnswered = answeredQuestions.includes(uniqueQuestionId);
@@ -33,78 +37,130 @@ const QuestionPopup = ({ place, onQuestionDone }) => {
       const pointsToAdd = errorCount === 0 ? 1 : 0.5;
       setScore(score + pointsToAdd);
       addAnsweredQuestion(uniqueQuestionId);
-      setFeedbackMessage("Bonne réponse !");
+      setFeedbackMessage("✅ Bonne réponse !");
       setQuestionDone(true);
-      playSound("goodAnswer"); // Son de bonne réponse déjà présent
-      if (onQuestionDone) onQuestionDone();
+      setValidatedAnswer(answerToCheck);
+      playSound("goodAnswer");
+      if (onQuestionDone) {
+        onQuestionDone();
+      }
     } else {
       setErrorCount(errorCount + 1);
+      playSound("wrongAnswer");
+
       if (errorCount === 0) {
-        setFeedbackMessage("1ère erreur : un indice va s'afficher.");
+        setFeedbackMessage("😅 1ère erreur : un indice va s'afficher.");
       } else if (errorCount === 1) {
-        setFeedbackMessage("2ème erreur : passage au QCM !");
+        setFeedbackMessage("⚠️ 2ème erreur : passage au QCM !");
       } else {
-        setFeedbackMessage(`Mauvaise réponse. La bonne réponse était : ${question.bonne_reponse}`);
+        setFeedbackMessage(
+          `❌ Mauvaise réponse. La bonne réponse était : ${question.bonne_reponse}`
+        );
         addAnsweredQuestion(uniqueQuestionId);
         setQuestionDone(true);
-        if (onQuestionDone) onQuestionDone();
+        if (onQuestionDone) {
+          onQuestionDone();
+        }
       }
-      playSound("wrongAnswer"); // Son de mauvaise réponse
     }
+
     setUserAnswer("");
   };
 
   return (
     <div>
-      <p>{question.question}</p>
+      <p className="popup-question">❓ {question.question}</p>
 
-      {(questionDone || isAnswered) ? (
-        <p style={{ color: "green" }}>Question déjà répondue.</p>
+      {questionDone || isAnswered ? (
+        <>
+          <p style={{ color: "green" }}>Question déjà répondue.</p>
+          {validatedAnswer && (
+            <p className="bold-answer">Votre réponse : {validatedAnswer}</p>
+          )}
+        </>
       ) : (
         <>
           {errorCount === 0 && (
-            <>
+            <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
               <input
                 type="text"
                 value={userAnswer}
                 onChange={(e) => setUserAnswer(e.target.value)}
+                placeholder="Votre réponse"
+                style={{ flex: "1" }}
+                className="bold-input"
               />
-              <button onClick={() => { playSound("buttonClick"); handleValidate(); }}>Valider</button>
-            </>
+              <button
+                onClick={() => {
+                  playSound("buttonClick");
+                  handleValidate();
+                }}
+                className="button-blue"
+              >
+                ✅ Valider la réponse
+              </button>
+            </div>
           )}
+
           {errorCount === 1 && (
             <>
               <p>
-                <strong>Indice : </strong>{question.indice}
+                <strong>💡 Indice :</strong> {question.indice}
               </p>
-              <input
-                type="text"
-                value={userAnswer}
-                onChange={(e) => setUserAnswer(e.target.value)}
-              />
-              <button onClick={() => { playSound("buttonClick"); handleValidate(); }}>Valider</button>
+              <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+                <input
+                  type="text"
+                  value={userAnswer}
+                  onChange={(e) => setUserAnswer(e.target.value)}
+                  placeholder="Votre réponse"
+                  style={{ flex: "1" }}
+                  className="bold-input"
+                />
+                <button
+                  onClick={() => {
+                    playSound("buttonClick");
+                    handleValidate();
+                  }}
+                  className="button-blue"
+                >
+                  ✅ Valider la réponse
+                </button>
+              </div>
             </>
           )}
+
           {errorCount === 2 && (
             <>
-              <p><strong>Dernière chance (QCM) :</strong></p>
-              {question.qcm.map((option, idx) => (
-                <button key={idx} onClick={() => { playSound("buttonClick"); handleValidate(option); }}>
-                  {option}
-                </button>
-              ))}
+              <p>
+                <strong>🎓 Dernière chance (QCM) :</strong>
+              </p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+                {question.qcm.map((option, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => {
+                      playSound("buttonClick");
+                      handleValidate(option);
+                    }}
+                    className="button-qcm"
+                  >
+                    {option}
+                  </button>
+                ))}
+              </div>
             </>
           )}
         </>
       )}
 
       {feedbackMessage && (
-        <p style={{ marginTop: "10px", fontStyle: "italic" }}>
-          {feedbackMessage}
-        </p>
+        <p className="feedback-message">{feedbackMessage}</p>
       )}
     </div>
   );
 };
 
-export default React.memo(QuestionPopup, (prevProps, nextProps) => prevProps.place === nextProps.place);
+export default React.memo(
+  QuestionPopup,
+  (prevProps, nextProps) => prevProps.place === nextProps.place
+);
