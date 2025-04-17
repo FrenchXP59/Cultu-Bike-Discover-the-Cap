@@ -1,4 +1,3 @@
-// src/components/MapComponent.jsx
 import React, { useState, useEffect, memo, useContext } from "react";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
@@ -9,7 +8,6 @@ import BottomSheet from "./BottomSheet";
 import RecenterMap from "../utils/RecenterMap";
 import { GameContext } from "../GameContext";
 
-// Configuration des icônes personnalisées en utilisant des URL absolues (car les images sont dans public/images)
 const myIcon = L.icon({
   iconUrl: "/images/marker-icon.png",
   iconRetinaUrl: "/images/marker-icon-2x.png",
@@ -55,22 +53,24 @@ const MapComponent = () => {
 
   useEffect(() => {
     if (!navigator.geolocation) {
-      console.log("La géolocalisation n'est pas supportée par ce navigateur.");
+      console.warn("⚠️ La géolocalisation n'est pas supportée par ce navigateur.");
       return;
     }
 
     const watchId = navigator.geolocation.watchPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
+        console.log("📍 Position reçue :", latitude, longitude);
         setUserLocation({ lat: latitude, lng: longitude });
       },
       (error) => {
-        console.log("Erreur geoloc :", error);
+        console.error("❌ Erreur géolocalisation :", error);
+        setUserLocation({ lat: 50.632, lng: 3.059 }); // fallback Lille
       },
       {
-        enableHighAccuracy: true,
-        maximumAge: 5000,
-        timeout: 10000,
+        enableHighAccuracy: false,
+        maximumAge: 30000,
+        timeout: 20000,
       }
     );
 
@@ -97,7 +97,11 @@ const MapComponent = () => {
         ))}
 
         {userLocation && (
-          <Marker position={[userLocation.lat, userLocation.lng]} icon={userIcon} zIndexOffset={-1000} />
+          <Marker
+            position={[userLocation.lat, userLocation.lng]}
+            icon={userIcon}
+            zIndexOffset={-1000}
+          />
         )}
 
         {shouldRecenter && (
@@ -111,7 +115,11 @@ const MapComponent = () => {
       </MapContainer>
 
       {isSmallScreen && selectedPlace && (
-        <BottomSheet place={selectedPlace} onClose={() => setSelectedPlace(null)} />
+        <BottomSheet
+          place={selectedPlace}
+          onClose={() => setSelectedPlace(null)}
+          userLocation={userLocation}
+        />
       )}
     </div>
   );

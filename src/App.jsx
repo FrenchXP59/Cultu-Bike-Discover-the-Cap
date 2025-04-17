@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { TimeProvider, TimeContext } from "./TimeContext.jsx";
 import { GameProvider, GameContext } from "./GameContext.jsx";
+import { LocationProvider } from "./LocationContext.jsx"; // ✅ Correctement importé
 import MapComponent from "./components/MapComponent";
 import ScoreBoard from "./components/ScoreBoard";
 import ScoreRanking from "./components/ScoreRanking";
@@ -19,19 +20,16 @@ function MainApp() {
   const [gameOver, setGameOver] = useState(false);
   const [selectedPlace, setSelectedPlace] = useState(null);
 
-  // Lance le jeu après l'intro
   const handleEnterGame = () => {
     setIntroKey(prev => prev + 1);
     setShowIntro(false);
   };
 
-  // Enregistre le score et bascule vers le classement
   const handleEndGame = () => {
     saveScore(score, time);
     setGameOver(true);
   };
 
-  // Active son + géoloc
   const handleEnableSoundAndGeo = () => {
     setIsMuted(false);
     if (navigator.geolocation) {
@@ -44,7 +42,6 @@ function MainApp() {
     }
   };
 
-  // Écran d’intro
   if (showIntro) {
     return (
       <div
@@ -78,23 +75,21 @@ function MainApp() {
     );
   }
 
-  // Écran de classement avec options
   if (gameOver) {
     return (
       <ScoreRanking
         onRestart={() => {
-          resetGame();          // Réinitialise score + questions
-          setShowIntro(true);   // Retour à l’intro
+          resetGame();
+          setShowIntro(true);
           setGameOver(false);
         }}
         onReturnToGame={() => {
-          setGameOver(false);   // Reprend là où on s’est arrêté
+          setGameOver(false);
         }}
       />
     );
   }
 
-  // Écran principal
   return (
     <>
       <ScoreBoard />
@@ -111,15 +106,19 @@ function MainApp() {
   );
 }
 
+// ✅ VERSION FINALE
 function App() {
   const [testMode] = useState(false);
   if (testMode) {
     return <TestMarkerIcon />;
   }
+
   return (
     <TimeProvider>
       <GameProvider>
-        <MainApp />
+        <LocationProvider>
+          <MainApp />
+        </LocationProvider>
       </GameProvider>
     </TimeProvider>
   );

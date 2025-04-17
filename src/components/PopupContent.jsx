@@ -1,4 +1,3 @@
-// src/components/PopupContent.jsx
 import React, { useState } from "react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import QuestionPopup from "./QuestionPopup";
@@ -9,7 +8,7 @@ import "./DetailModal.css";
 import "../styles/responsive.css";
 import GeoValidation from "./GeoValidation";
 
-const PopupContent = React.memo(({ place, onClose }) => {
+const PopupContent = React.memo(({ place, onClose, userLocation }) => {
   const [showModal, setShowModal] = useState(false);
   const [questionDone, setQuestionDone] = useState(false);
 
@@ -51,6 +50,7 @@ const PopupContent = React.memo(({ place, onClose }) => {
         <GeoValidation
           targetLatitude={place.latitude}
           targetLongitude={place.longitude}
+          userLocation={userLocation} // 🆕 Ajouté ici
           pointReward={1}
         />
       </div>

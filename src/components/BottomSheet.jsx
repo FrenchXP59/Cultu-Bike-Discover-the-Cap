@@ -1,7 +1,7 @@
 import React from "react";
 import PopupContent from "./PopupContent";
 
-function BottomSheet({ place, onClose }) {
+function BottomSheet({ place, onClose, userLocation }) {
   if (!place) return null;
 
   return (
@@ -13,7 +13,7 @@ function BottomSheet({ place, onClose }) {
         right: 0,
         maxHeight: "80vh",
         overflowY: "auto",
-        background: "#FDF3E7", // Même fond que tablette
+        background: "#FDF3E7",
         boxShadow: "0 -4px 10px rgba(0,0,0,0.2)",
         borderTopLeftRadius: "14px",
         borderTopRightRadius: "14px",
@@ -21,12 +21,15 @@ function BottomSheet({ place, onClose }) {
         zIndex: 10000,
       }}
     >
-      {/* PAS de bouton “Fermer” ici */}
-
-      {/* Passe hideInternalClose pour masquer le bouton interne */}
-      <PopupContent place={place} onClose={onClose} hideInternalClose={true} />
+      <PopupContent
+        place={place}
+        onClose={onClose}
+        
+        userLocation={userLocation} // 🆕 Ajout de la prop
+      />
     </div>
   );
 }
 
 export default BottomSheet;
+
