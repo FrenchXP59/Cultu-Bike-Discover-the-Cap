@@ -234,4 +234,61 @@
   margin-top: 10px;
   font-style: italic;
   color: #2c3e50;
+}/* ----------------------------------
+   Boutons d'introduction (IntroVideo)
+---------------------------------- */
+.button-intro {
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.button-intro-sound {
+  background-color: #3498db;
+  color: white;
+}
+.button-intro-sound:hover {
+  background-color: #2980b9;
+}
+
+.button-intro-play {
+  background-color: #e67e22;
+  color: white;
+}
+.button-intro-play:hover {
+  background-color: #d35400;
+}
+.button-en-savoir-plus {
+  background-color: #9b59b6; /* Violet lisible */
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button-en-savoir-plus:hover {
+  background-color: #8e44ad;
+  transform: scale(1.03);
+}
+
+@media (max-width: 480px) {
+  .endgame-button {
+    top: 60px; /* au lieu de 20px, pour dégager l’espace */
+  }
+}@media (max-width: 480px) {
+  .popup-content {
+    padding-top: 36px;
+  }
 }

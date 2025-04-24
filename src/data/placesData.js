@@ -37,9 +37,9 @@ export const PLACES_DATA = [
       }
     ],
     defi: "Si la villa est ouverte, photographiez trois roses différentes dans le jardin. Identifiez-les ou inventez leurs noms.",
-    infoShort: "Villa Eilenroc est un lieu emblématique dont le nom cache un jeu de lettres surprenant.",
+    infoShort: "374 Av. Mrs Beaumont, 06160 Antibes",
     infoLong:
-      "Villa Eilenroc est un joyau historique du Cap d'Antibes, dont le nom mystérieux, une anagramme de 'Cornélie', invite les visiteurs à découvrir une histoire riche en anecdotes et en légendes. Construite en 1867 par l’architecte Charles Garnier pour un riche hollandais, elle témoigne du faste de la Belle Époque. Située dans un cadre idyllique, la villa offre des jardins luxuriants où les roses s’épanouissent, symbolisant la beauté intemporelle de cette demeure. Plongez dans son univers et laissez-vous séduire par son charme unique.",
+      "La Villa Eilenroc est un joyau historique du Cap d'Antibes, dont le nom mystérieux, une anagramme de 'Cornélie', invite les visiteurs à découvrir une histoire riche en anecdotes et en légendes. Construite en 1867 par l’architecte Charles Garnier pour un riche hollandais, elle témoigne du faste de la Belle Époque. Située dans un cadre idyllique, la villa offre des jardins luxuriants où les roses s’épanouissent, symbolisant la beauté intemporelle de cette demeure. Plongez dans son univers et laissez-vous séduire par son charme unique.",
     photo: "/images/villas/villa-eilenroc.jpg",
     infoPlus: "Donnée en legs à la ville d’Antibes en 1982, la villa Eilenroc est aujourd’hui ouverte au public à certaines périodes de l’année. Son parc de 11 hectares, bordé par le sentier du littoral, abrite un jardin d'essences méditerranéennes et une oliveraie centenaire. À l'intérieur, la décoration préservée transporte les visiteurs dans l’opulence du XIXe siècle, avec du mobilier d’époque et des salons raffinés. Son huile d’olive, produite sur place, perpétue une tradition locale et s’inscrit dans le patrimoine vivant de la région."
   },
@@ -64,7 +64,7 @@ export const PLACES_DATA = [
       }
     ],
     defi: "Observez attentivement le perron de la villa. Que symbolisent les éléments décoratifs visibles ? Indice : ils rappellent une invention célèbre au XIXe siècle…",
-    infoShort: "Villa Les Chênes Verts a accueilli Jules Verne et offre une vue panoramique inspirante.",
+    infoShort: "148 Bd J. F. Kennedy06160 Antibes.",
     infoLong:
       "Située au cœur du Cap d'Antibes, la Villa Les Chênes Verts est célèbre pour avoir accueilli Jules Verne, l’un des écrivains visionnaires les plus marquants du XIXe siècle. Face à une mer scintillante, ce havre de paix lui offrait un cadre propice à l’écriture et à la réflexion. La vue imprenable sur la Méditerranée et la végétation luxuriante du domaine ont nourri son imaginaire, influençant peut-être certaines de ses descriptions maritimes. Laissez-vous porter par l’histoire de cette villa, témoin discret du passage d’un génie littéraire.",
     photo: "/images/villas/villa-les-chenes-verts.jpg",
@@ -91,7 +91,7 @@ export const PLACES_DATA = [
       }
     ],
     defi: " Depuis la grille ou le chemin, tentez d’observer et photographier trois essences végétales différentes. Si le jardin est ouvert, cherchez des plantes exotiques (panneaux présents). Sinon, notez ce que vous apercevez et imaginez leur origine.",
-    infoShort: "Villa Thuret se distingue par son cadre exceptionnel, un havre de biodiversité.",
+    infoShort: " 90 Chem. Gustave Raymond, 06160 Antibes",
     infoLong:
       "La Villa Thuret abrite un jardin d’acclimatation unique qui sert de laboratoire botanique en plein air. Créé au XIXe siècle par le botaniste Gustave Thuret, ce lieu fascinant a été conçu pour tester l’acclimatation de plantes exotiques sur la Côte d’Azur. Aujourd’hui, il rassemble plus de 2 500 espèces venues des quatre coins du monde, offrant aux visiteurs une promenade immersive à travers une diversité végétale exceptionnelle. Chaque visite réserve de nouvelles découvertes, entre science et émerveillement.",
     photo: "/images/villas/villa-thuret.jpg",
@@ -118,7 +118,7 @@ export const PLACES_DATA = [
       }
     ],
     defi: "Trouvez et photographiez trois éléments architecturaux qui rappellent un navire sur la façade.",
-    infoShort: "Villa La Calade, construite en 1937, séduit par son style paquebot, une rareté architecturale.",
+    infoShort: "81 Passage du Diable, 06160 Antibes",
     infoLong:
       "Construite en 1937, la Villa La Calade est un exemple fascinant du style paquebot, inspiré par l’architecture des grands liners transatlantiques. Ses lignes épurées, ses balcons en forme de ponts et ses hublots rappellent l’élégance des paquebots des années 30. Ce bijou moderniste, conçu pour marier innovation et raffinement, reflète l’audace architecturale de son époque. Située face à la Méditerranée, elle incarne à merveille le lien entre la mer et l’architecture avant-gardiste.",
     photo: "/images/villas/villa-la-calade.jpg",
@@ -145,7 +145,7 @@ export const PLACES_DATA = [
       }
     ],
     defi: "Réalisez un croquis rapide de la façade en mettant en évidence ses caractéristiques modernistes.",
-    infoShort: "Villa Aujourd'hui est un chef-d'œuvre moderniste conçu par Barry Dierks.",
+    infoShort: "1546 boulevard Maréchal Juin - Cap d'Antibe",
     infoLong:
       "Construite en 1938 par l'architecte américain Barry Dierks, la Villa Aujourd'hui est une référence du modernisme en Méditerranée. Avec ses lignes épurées, ses larges baies vitrées et sa façade audacieuse, elle incarne une vision avant-gardiste du luxe balnéaire. Conçue pour fusionner avec son environnement, elle offre une connexion unique entre l’intérieur et l’extérieur, captant la lumière et la douceur du climat du Cap d’Antibes. Cette villa est un témoignage exceptionnel du design architectural du XXe siècle.",
     photo: "/images/villas/villa-aujourdhui.jpg",
@@ -172,7 +172,7 @@ export const PLACES_DATA = [
       }
     ],
     defi: "Dessinez ou photographiez le portail ou les pins parasols qui cachent la villa. Une autre façon d’immortaliser un lieu mythique… sans le voir vraiment.",
-    infoShort: "Villa Soleil, initialement pavillon de chasse, est devenue un symbole du luxe au Cap-Eden-Roc.",
+    infoShort: "167-165 Bd J. F. Kennedy, 06160 Antibes",
     infoLong:
       "Nichée au cœur du Cap-Eden-Roc, la Villa Soleil a connu une transformation spectaculaire. Conçue à l'origine comme pavillon de chasse pour Auguste de Villemessant, fondateur du Figaro, elle fut progressivement agrandie avant de devenir l'un des hôtels les plus emblématiques de la Côte d'Azur. Son architecture élégante et ses terrasses ouvertes sur la Méditerranée en font un lieu d’exception, prisé par les célébrités et la haute société depuis plus d'un siècle.",
     photo: "/images/villas/villa-soleil.jpg",
@@ -199,7 +199,7 @@ export const PLACES_DATA = [
       }
     ],
     defi: "Réalisez un dessin abstrait inspiré par les formes sculpturales de la villa.",
-    infoShort: "Villa Bloc se distingue par ses volumes suspendus, une prouesse architecturale audacieuse.",
+    infoShort: "31, avenue Aimée-Bourreau,  Antibes ",
     infoLong:
       "Construite en 1959 par l’architecte André Bloc, la Villa Bloc est une véritable sculpture habitée qui défie les conventions architecturales. Ses volumes suspendus et imbriqués jouent avec la lumière, créant un équilibre subtil entre ombre et transparence. À mi-chemin entre l’art et l’architecture, elle incarne une approche visionnaire de l’espace, où chaque angle et surface raconte une histoire de modernité et d’expérimentation. Ce chef-d’œuvre unique attire les passionnés d’architecture et de design en quête d’innovation et de perspectives nouvelles.",
     photo: "/images/villas/villa-bloc.jpg",
@@ -227,7 +227,7 @@ export const PLACES_DATA = [
       }
     ],
     defi: "Trouvez et photographiez trois pointus aux couleurs différentes et identifiez le nom inscrit sur l’un d’eux.",
-    infoShort: "Le Port de l'Olivette est célèbre pour ses pointus traditionnels, symbole du patrimoine maritime.",
+    infoShort: "1471 boulevard du Maréchal Juin, Antibes",
     infoLong:
       "Le Port de l'Olivette, situé au cœur du Cap d'Antibes, est un port historique où l'on peut encore admirer les traditionnels pointus. Ces bateaux en bois, aux couleurs variées, témoignent des savoir-faire anciens et de l'histoire maritime de la région. En flânant dans ce port authentique, vous découvrirez un univers riche en traditions et en récits passionnants sur la vie en bord de mer.",
     photo: "/images/villas/port-de-l-olivette.jpg",
@@ -263,7 +263,7 @@ export const PLACES_DATA = [
         }
       ],
       defi: "Depuis Port Crouton, empruntez le sentier du littoral en direction de la Villa La Vigie. Observez-la depuis un angle différent de la route principale. Prenez une photo ou réalisez un croquis de ce point de vue inhabituel. Bonus : imaginez le shooting de mode parfait dans ce décor.",
-      infoShort: "Villa La Vigie, autrefois propriété d'un grand couturier, offre une vue imprenable sur la Méditerranée.",
+      infoShort: "30, 37 boulevard Edouard-Baudoin, Antibes",
       infoLong:
         "Construite en 1902 par Sir William Ingram, la villa séduit par ses volumes, son jardin exotique et sa vue sur la Méditerranée. Karl Lagerfeld y installa sa résidence à partir de 1986, y exposant ses collections dans un décor à son image : classique, exigeant, hors du temps.. Ce joyau architectural allie élégance classique et modernité, avec de vastes terrasses offrant un panorama spectaculaire sur la mer. Loin du tumulte, cette villa incarne un art de vivre sophistiqué, mêlant luxe, histoire et inspiration artistique dans un cadre idyllique.",
       photo: "/images/villas/villa-la-vigie.jpg",
@@ -296,7 +296,7 @@ export const PLACES_DATA = [
         }
       ],
       defi: "Prenez une pose comique façon music-hall devant l’un des visages sculptés. Vous êtes le Dranem du jour ",
-      infoShort: "Construite en 1903, L'Olivette fut la demeure de Dranem, un artiste comique au grand cœur.",
+      infoShort: "1421 Bd Maréchal Juin, 06160 Antibes",
       infoLong:
         "La villa L’Olivette, édifiée en 1903 par un peintre décorateur, fut acquise en 1919 par le célèbre chanteur fantaisiste Dranem (Armand Ménard). Située face à la charmante plage de l’Olivette, elle marie simplicité et convivialité, reflétant l’âme généreuse de son propriétaire d’autrefois. Entourée d’un jardin isolé, la villa offrait un havre de paix où Dranem, sa famille et ses amis profitaient de moments de détente, de parties de cartes, ainsi que de spectacles impromptus. Plusieurs bustes représentant son visage rieur ornent encore les piliers du portail, rappelant l’esprit chaleureux qui imprègne ce lieu historique.",
       photo: "/images/villas/l-olivette.jpg",

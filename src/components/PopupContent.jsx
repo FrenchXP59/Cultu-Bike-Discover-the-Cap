@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt, FaGift } from "react-icons/fa";
 import QuestionPopup from "./QuestionPopup";
 import DefiPopup from "./DefiPopup";
 import DetailModal from "./DetailModal.jsx";
@@ -50,7 +50,7 @@ const PopupContent = React.memo(({ place, onClose, userLocation }) => {
         <GeoValidation
           targetLatitude={place.latitude}
           targetLongitude={place.longitude}
-          userLocation={userLocation} // 🆕 Ajouté ici
+          userLocation={userLocation}
           pointReward={1}
         />
       </div>
@@ -60,7 +60,7 @@ const PopupContent = React.memo(({ place, onClose, userLocation }) => {
           onClick={handleOpenModal}
           className="button-en-savoir-plus"
         >
-          En savoir plus
+          <FaGift /> En savoir plus
         </button>
       )}
 
