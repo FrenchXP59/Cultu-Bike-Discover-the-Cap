@@ -1,0 +1,21 @@
+{
+  "name": "Cultu-Bike",
+  "short_name": "CultuBike",
+  "description": "Le jeu de découverte culturelle à vélo autour de la ville",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#FDF3E7",
+  "theme_color": "#1abc9c",
+  "icons": [
+    {
+      "src": "/images/icons/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icons/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

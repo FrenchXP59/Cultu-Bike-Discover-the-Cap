@@ -1,14 +1,15 @@
+// src/App.jsx
 import React, { useState, useContext } from "react";
 import { TimeProvider, TimeContext } from "./TimeContext.jsx";
 import { GameProvider, GameContext } from "./GameContext.jsx";
 import { LocationProvider } from "./LocationContext.jsx";
-import MapComponent from "./components/MapComponent";
-import ScoreBoard from "./components/ScoreBoard";
-import ScoreRanking from "./components/ScoreRanking";
-import IntroVideo from "./components/IntroVideo";
-import { saveScore } from "./utils/scoreUtils";
+import ErrorBoundary from "./components/ErrorBoundary.jsx";
+import MapComponent from "./components/MapComponent.jsx";
+import ScoreBoard from "./components/ScoreBoard.jsx";
+import ScoreRanking from "./components/ScoreRanking.jsx";
+import IntroVideo from "./components/IntroVideo.jsx";
+import { saveScore } from "./utils/scoreUtils.js";
 import "./styles/responsive.css";
-import { FaGift } from "react-icons/fa";
 
 function MainApp() {
   const { score, resetGame } = useContext(GameContext);
@@ -18,10 +19,20 @@ function MainApp() {
   const [isMuted, setIsMuted] = useState(true);
   const [introKey, setIntroKey] = useState(0);
   const [gameOver, setGameOver] = useState(false);
-  const [selectedPlace, setSelectedPlace] = useState(null);
+  const [popupOpen, setPopupOpen] = useState(false);
+
+  const handleEnableSoundAndGeo = () => {
+    setIsMuted(false);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        () => console.log("Géo autorisée"),
+        () => console.warn("Géo refusée")
+      );
+    }
+  };
 
   const handleEnterGame = () => {
-    setIntroKey((prev) => prev + 1);
+    setIntroKey((k) => k + 1);
     setShowIntro(false);
   };
 
@@ -30,48 +41,14 @@ function MainApp() {
     setGameOver(true);
   };
 
-  const handleEnableSoundAndGeo = () => {
-    setIsMuted(false);
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => console.log("Géolocalisation autorisée :", position.coords),
-        (error) => console.log("Géolocalisation refusée ou indisponible :", error)
-      );
-    } else {
-      console.log("La géolocalisation n’est pas supportée sur ce navigateur.");
-    }
-  };
-
   if (showIntro) {
     return (
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: "black",
-          zIndex: 1000,
-          overflow: "hidden",
-        }}
-      >
-        <IntroVideo key={introKey} isMuted={isMuted} />
-        <button
-          onClick={handleEnableSoundAndGeo}
-          className="button-intro button-intro-sound"
-          style={{ position: "fixed", bottom: "20px", left: "20px", zIndex: 1001 }}
-        >
-          🎧 Activer le son + Géolocalisation
-        </button>
-        <button
-          onClick={handleEnterGame}
-          className="button-intro button-intro-play"
-          style={{ position: "fixed", bottom: "20px", right: "20px", zIndex: 1001 }}
-        >
-          <FaGift style={{ marginRight: "6px" }} /> Accéder au jeu
-        </button>
-      </div>
+      <IntroVideo
+        key={introKey}
+        isMuted={isMuted}
+        onEnableSoundAndGeo={handleEnableSoundAndGeo}
+        onEnterGame={handleEnterGame}
+      />
     );
   }
 
@@ -83,36 +60,37 @@ function MainApp() {
           setShowIntro(true);
           setGameOver(false);
         }}
-        onReturnToGame={() => {
-          setGameOver(false);
-        }}
+        onReturnToGame={() => setGameOver(false)}
       />
     );
   }
 
   return (
     <>
-      <ScoreBoard />
-      {!selectedPlace && (
+      {/* On masque ScoreBoard et bouton “Terminer” si popupOpen=true */}
+      {!popupOpen && <ScoreBoard />}
+      {!popupOpen && (
         <button onClick={handleEndGame} className="endgame-button">
           Terminer la partie
         </button>
       )}
-      <MapComponent selectedPlace={selectedPlace} setSelectedPlace={setSelectedPlace} />
+
+      {/* onPopupToggle passe la valeur popupOpen à MainApp */}
+      <MapComponent onPopupToggle={setPopupOpen} />
     </>
   );
 }
 
-function App() {
+export default function App() {
   return (
-    <TimeProvider>
-      <GameProvider>
-        <LocationProvider>
-          <MainApp />
-        </LocationProvider>
-      </GameProvider>
-    </TimeProvider>
+    <ErrorBoundary>
+      <TimeProvider>
+        <GameProvider>
+          <LocationProvider>
+            <MainApp />
+          </LocationProvider>
+        </GameProvider>
+      </TimeProvider>
+    </ErrorBoundary>
   );
 }
-
-export default App;

@@ -1,10 +1,11 @@
-// src/components/ScoreBoard.jsx
 import React, { useContext } from "react";
 import { GameContext } from "../GameContext.jsx";
 import { TimeContext } from "../TimeContext.jsx";
 import { FaBicycle } from "react-icons/fa";
 
-const ScoreBoard = () => {
+const ScoreBoard = ({ popupOpen }) => {
+  if (popupOpen) return null;
+
   const { score, answeredQuestions } = useContext(GameContext);
   const { time } = useContext(TimeContext);
 

@@ -29,4 +29,36 @@
 .bold-input {
   font-weight: bold !important;
   color: #2c3e50; /* optionnel, pour cohérence visuelle */
+}/* Feedback message apparaît en fondu/slide */
+.feedback-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.feedback-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+.feedback-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+.feedback-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+/* ----------------------------------
+   Réponse utilisateur en gras
+---------------------------------- */
+.bold-answer {
+  font-weight: bold !important;
+  color: #2c3e50 !important;
+}
+
+/* Texte en gras directement dans l'input */
+.bold-input {
+  font-weight: bold !important;
+  color: #2c3e50;
 }

@@ -1,12 +1,22 @@
-// Exemple dans DetailModal.jsx
-import React from "react";
+// src/components/DetailModal.jsx
+import React, { useRef } from "react";
 import { CSSTransition } from "react-transition-group";
-import "./DetailModal.css";
+// on garde seulement le CSS commun
+import "../styles/responsive.css";
 
 const DetailModal = ({ place, onClose, show }) => {
+  const nodeRef = useRef(null);
+
   return (
-    <CSSTransition in={show} timeout={300} classNames="modal" unmountOnExit>
+    <CSSTransition
+      in={show}
+      timeout={300}
+      classNames="modal"
+      unmountOnExit
+      nodeRef={nodeRef}
+    >
       <div
+        ref={nodeRef}
         style={{
           position: "fixed",
           top: 0,
@@ -18,6 +28,7 @@ const DetailModal = ({ place, onClose, show }) => {
           alignItems: "center",
           justifyContent: "center",
           zIndex: 10000,
+          padding: "10px",
         }}
       >
         <div
@@ -25,7 +36,8 @@ const DetailModal = ({ place, onClose, show }) => {
             backgroundColor: "#fff",
             padding: "20px",
             borderRadius: "8px",
-            maxWidth: "90%",
+            maxWidth: "600px",
+            width: "90%",
             maxHeight: "90%",
             overflowY: "auto",
           }}
@@ -39,8 +51,9 @@ const DetailModal = ({ place, onClose, show }) => {
               style={{
                 width: "100%",
                 maxWidth: "400px",
+                display: "block",
+                margin: "0 auto 20px auto",
                 borderRadius: "4px",
-                marginBottom: "20px",
               }}
             />
           )}
@@ -63,17 +76,10 @@ const DetailModal = ({ place, onClose, show }) => {
             </div>
           )}
 
+          {/* ici on applique ta classe de fermeture rouge */}
           <button
             onClick={onClose}
-            style={{
-              marginTop: "20px",
-              padding: "10px 20px",
-              backgroundColor: "#e74c3c",
-              color: "#fff",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
+            className="button-close-modal"
           >
             Fermer
           </button>

@@ -1,3 +1,6 @@
+/* --------------------------------------------------
+   Animations d’entrée / sortie pour la modale
+-------------------------------------------------- */
 .modal-enter {
   opacity: 0;
   transform: scale(0.9);
@@ -5,7 +8,7 @@
 .modal-enter-active {
   opacity: 1;
   transform: scale(1);
-  transition: opacity 300ms, transform 300ms;
+  transition: opacity 300ms ease, transform 300ms ease;
 }
 .modal-exit {
   opacity: 1;
@@ -14,5 +17,32 @@
 .modal-exit-active {
   opacity: 0;
   transform: scale(0.9);
-  transition: opacity 300ms, transform 300ms;
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+/* --------------------------------------------------
+   Bouton “Fermer” de la modale “En savoir plus”
+-------------------------------------------------- */
+:root {
+  --btn-red:       #e74c3c;
+  --btn-red-hover: #c0392b;
+  --gap:           10px;   /* Assurez-vous que ça correspond à votre responsive.css */
+}
+
+/* Classe à appliquer sur votre <button> de fermeture */
+.button-close-modal {
+  display: block;
+  margin: var(--gap) auto 0 auto;  /* centré en bas */
+  padding: 8px 16px;
+  background-color: var(--btn-red) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 6px !important;
+  font-size: 1rem;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.button-close-modal:hover {
+  background-color: var(--btn-red-hover) !important;
 }

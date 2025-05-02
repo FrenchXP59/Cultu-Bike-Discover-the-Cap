@@ -1,5 +1,5 @@
 // src/components/QuestionPopup.jsx
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { GameContext } from "../GameContext.jsx";
 import { isCorrectAnswer } from "../utils/stringUtils";
 import { playSound } from "../utils/soundManager";
@@ -13,6 +13,7 @@ const QuestionPopup = ({ place, onQuestionDone }) => {
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [validatedAnswer, setValidatedAnswer] = useState("");
 
+  // Réinitialisation à chaque nouveau lieu
   useEffect(() => {
     setUserAnswer("");
     setErrorCount(0);
@@ -21,16 +22,16 @@ const QuestionPopup = ({ place, onQuestionDone }) => {
     setValidatedAnswer("");
   }, [place]);
 
+  // On prend toujours la première (et unique) question
   const question = place.questions?.[0];
-  if (!question) {
-    return <p>Aucune question pour ce lieu.</p>;
-  }
+  if (!question) return <p>Aucune question pour ce lieu.</p>;
 
   const uniqueQuestionId = `${place.id}-${question.id}`;
   const isAnswered = answeredQuestions.includes(uniqueQuestionId);
 
   const handleValidate = (providedAnswer) => {
-    const answerToCheck = providedAnswer !== undefined ? providedAnswer : userAnswer;
+    playSound("buttonClick");
+    const answerToCheck = providedAnswer ?? userAnswer;
     const correct = isCorrectAnswer(answerToCheck, question.reponses_acceptables);
 
     if (correct) {
@@ -41,26 +42,20 @@ const QuestionPopup = ({ place, onQuestionDone }) => {
       setQuestionDone(true);
       setValidatedAnswer(answerToCheck);
       playSound("goodAnswer");
-      if (onQuestionDone) {
-        onQuestionDone();
-      }
+      onQuestionDone?.();
     } else {
-      setErrorCount(errorCount + 1);
       playSound("wrongAnswer");
+      setErrorCount((c) => c + 1);
 
       if (errorCount === 0) {
-        setFeedbackMessage("😅 1ère erreur : un indice va s'afficher.");
+        setFeedbackMessage("😅 1ʳᵉ erreur : un indice va s'afficher.");
       } else if (errorCount === 1) {
-        setFeedbackMessage("⚠️ 2ème erreur : passage au QCM !");
+        setFeedbackMessage("⚠️ 2ᵉ erreur : passage au QCM !");
       } else {
-        setFeedbackMessage(
-          `❌ Mauvaise réponse. La bonne réponse était : ${question.bonne_reponse}`
-        );
+        setFeedbackMessage(`❌ Mauvaise réponse. La bonne réponse était : ${question.bonne_reponse}`);
         addAnsweredQuestion(uniqueQuestionId);
         setQuestionDone(true);
-        if (onQuestionDone) {
-          onQuestionDone();
-        }
+        onQuestionDone?.();
       }
     }
 
@@ -68,81 +63,46 @@ const QuestionPopup = ({ place, onQuestionDone }) => {
   };
 
   return (
-    <div>
+    <div className="question-container">
       <p className="popup-question">❓ {question.question}</p>
 
-      {questionDone || isAnswered ? (
+      {(questionDone || isAnswered) ? (
         <>
-          <p style={{ color: "green" }}>Question déjà répondue.</p>
+          <p className="feedback-message" style={{ color: "green" }}>Question déjà répondue.</p>
           {validatedAnswer && (
             <p className="bold-answer">Votre réponse : {validatedAnswer}</p>
           )}
         </>
       ) : (
         <>
-          {errorCount === 0 && (
+          {errorCount < 2 && (
             <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
               <input
                 type="text"
                 value={userAnswer}
                 onChange={(e) => setUserAnswer(e.target.value)}
                 placeholder="Votre réponse"
-                style={{ flex: "1" }}
                 className="bold-input"
+                style={{ flex: 1 }}
               />
               <button
-                onClick={() => {
-                  playSound("buttonClick");
-                  handleValidate();
-                }}
-                className="button-blue"
+                className="btn btn-blue"
+                onClick={() => handleValidate()}
               >
-                ✅ Valider la réponse
+                ✅ Valider
               </button>
             </div>
           )}
 
-          {errorCount === 1 && (
-            <>
-              <p>
-                <strong>💡 Indice :</strong> {question.indice}
-              </p>
-              <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
-                <input
-                  type="text"
-                  value={userAnswer}
-                  onChange={(e) => setUserAnswer(e.target.value)}
-                  placeholder="Votre réponse"
-                  style={{ flex: "1" }}
-                  className="bold-input"
-                />
-                <button
-                  onClick={() => {
-                    playSound("buttonClick");
-                    handleValidate();
-                  }}
-                  className="button-blue"
-                >
-                  ✅ Valider la réponse
-                </button>
-              </div>
-            </>
-          )}
-
           {errorCount === 2 && (
             <>
-              <p>
-                <strong>🎓 Dernière chance (QCM) :</strong>
-              </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+              <p><strong>🎓 Dernière chance (QCM) :</strong></p>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginBottom: "10px" }}>
                 {question.qcm.map((option, idx) => (
                   <button
                     key={idx}
-                    onClick={() => {
-                      playSound("buttonClick");
-                      handleValidate(option);
-                    }}
-                    className="button-qcm"
+                    className="btn btn-purple button-qcm"
+                    onClick={() => handleValidate(option)}
                   >
                     {option}
                   </button>
@@ -162,5 +122,5 @@ const QuestionPopup = ({ place, onQuestionDone }) => {
 
 export default React.memo(
   QuestionPopup,
-  (prevProps, nextProps) => prevProps.place === nextProps.place
+  (prev, next) => prev.place === next.place
 );

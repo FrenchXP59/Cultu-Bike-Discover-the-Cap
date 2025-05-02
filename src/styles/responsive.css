@@ -1,41 +1,113 @@
+/* src/styles/responsive.css */
+
 /* ----------------------------------
-   Base : scoreboard + bouton
+   Variables CSS globales
+---------------------------------- */
+:root {
+  --bg-light:           #FDF3E7;
+  --txt-dark:           #333;
+
+  --btn-yellow:         #f1c40f;
+  --btn-yellow-hover:   #f39c12;
+
+  --btn-orange:         #e67e22;
+  --btn-orange-hover:   #d35400;
+
+  --btn-purple:         #9b59b6;
+  --btn-purple-hover:   #8e44ad;
+
+  --btn-blue:           #3498db;
+  --btn-blue-hover:     #2980b9;
+
+  --btn-turquoise:      #1abc9c;
+  --btn-turquoise-hover:#17a589;
+
+  --btn-grey:           #ecf0f1;
+  --btn-grey-hover:     #bdc3c7;
+
+  --btn-red:            #e74c3c;
+  --btn-red-hover:      #c0392b;
+
+  --radius:             6px;
+  --gap:                10px;
+  --font-base:          1rem;
+  --font-small:         0.9rem;
+  --btn-padding:        12px 20px;
+}
+
+/* ----------------------------------
+   Boutons génériques
+---------------------------------- */
+.btn {
+  padding: var(--btn-padding);
+  font-size: var(--font-base);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              transform 0.2s ease;
+  border: none;
+}
+.btn-yellow         { background: var(--btn-yellow);      color: var(--txt-dark); }
+.btn-yellow:hover   { background: var(--btn-yellow-hover); color: #fff; }
+.btn-orange         { background: var(--btn-orange);      color: #fff; }
+.btn-orange:hover   { background: var(--btn-orange-hover); }
+.btn-purple         { background: var(--btn-purple);      color: #fff; }
+.btn-purple:hover   { background: var(--btn-purple-hover); }
+.btn-blue           { background: var(--btn-blue);        color: #fff; }
+.btn-blue:hover     { background: var(--btn-blue-hover);  }
+.btn-turquoise      { background: var(--btn-turquoise);   color: #fff; }
+.btn-turquoise:hover{ background: var(--btn-turquoise-hover); }
+.btn-grey           { background: var(--btn-grey);        color: var(--txt-dark); }
+.btn-grey:hover     { background: var(--btn-grey-hover);  }
+
+.btn:disabled,
+.validated {
+  opacity: 0.7;
+  cursor: default;
+}
+
+/* ----------------------------------
+   Scoreboard & Fin de partie
 ---------------------------------- */
 .scoreboard-container {
   position: fixed;
+  /* sous la barre système (notch) sur iOS */
+  top:    calc(env(safe-area-inset-top,   0px) + var(--gap));
+  left:   calc(env(safe-area-inset-left,  0px) + var(--gap));
   z-index: 9999;
-  background-color: #FDF3E7;
-  color: #333;
+  background-color: var(--bg-light);
+  color: var(--txt-dark);
   font-family: "Roboto", sans-serif;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
-  display: inline-block;
-  max-width: 250px;
-  width: auto;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  border-radius: var(--radius);
   padding: 8px;
+  font-size: var(--font-base);
 }
 
 .endgame-button {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  /* sous la barre système (notch) sur iOS */
+  top:    calc(env(safe-area-inset-top,   0px) + var(--gap));
+  right:  calc(env(safe-area-inset-right, 0px) + var(--gap));
   z-index: 11000;
-  background-color: #f1c40f;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  background-color: var(--btn-yellow);
+  color: var(--txt-dark);
+  border: none;
   padding: 8px 16px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  border-radius: var(--radius);
+  font-size: var(--font-base);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: background-color 0.2s ease,
+              box-shadow      0.2s ease;
 }
 .endgame-button:hover {
-  background-color: #f39c12;
-  color: #fff;
+  background-color: var(--btn-yellow-hover);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 /* ----------------------------------
-   Popup content de base
+   Contenu des popups
 ---------------------------------- */
 .popup-content {
   background-color: transparent;
@@ -45,250 +117,172 @@
 }
 
 /* ----------------------------------
-   Leaflet popup
+   Leaflet Popup minimal
 ---------------------------------- */
-.leaflet-popup {
-  max-height: 90vh !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  margin-left: 0 !important;
-}
+.leaflet-popup,
 .leaflet-popup[style*="margin-left"] {
-  margin-left: 0 !important;
+  max-height: 90vh !important;
+  overflow-y: auto   !important;
+  overflow-x: hidden !important;
+  margin-left: 0     !important;
 }
 
 .leaflet-popup-content-wrapper {
-  background-color: #FDF3E7 !important;
-  border: 0px solid #e74c3c !important;
-  border-radius: 6px !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+  background-color: var(--bg-light) !important;
+  border-radius: var(--radius)      !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2) !important;
   min-height: 200px !important;
-  max-height: 90vh !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
+  max-height: 90vh  !important;
   overflow-wrap: break-word !important;
-  word-wrap: break-word !important;
-  white-space: normal !important;
+  white-space: normal       !important;
 }
 
 .leaflet-popup-tip {
-  background: #FDF3E7 !important;
-  border: 2px solid #e74c3c !important;
+  background-color: var(--bg-light) !important;
+  border: 2px solid var(--btn-orange) !important;
+}
+
+/* Titres et questions dans popup */
+.popup-title    { font-size: 1.2rem; font-weight: bold; margin-bottom: 10px; }
+.popup-question { font-size: 1rem;   font-weight: bold; margin-bottom: 12px; }
+
+/* ----------------------------------
+   Barre de progression
+---------------------------------- */
+.progress-label { font-size: var(--font-small); margin-bottom: 4px; }
+.progress-bar-wrapper { margin-bottom: var(--gap); }
+.progress-bar-bg {
+  width: 100%; height: 8px; background: #ddd;
+  border-radius: 4px; overflow: hidden;
+}
+.progress-bar-fill {
+  width: auto; height: 100%; background: var(--btn-blue);
+  transition: width 0.3s ease;
+}
+
+/* ----------------------------------
+   Feedback & Input
+---------------------------------- */
+.feedback-message { font-style: italic; color: #2c3e50; margin-top: var(--gap); }
+.bold-input       { font-weight: bold; color: #2c3e50; }
+
+/* ----------------------------------
+   Boutons de défi et QCM
+---------------------------------- */
+.challenge-buttons {
+  display: flex; flex-wrap: wrap; gap: var(--gap);
+  margin: var(--gap) 0;
+}
+.button-qcm {
+  padding: var(--btn-padding);
+  font-size: var(--font-base);
+}
+
+/* ----------------------------------
+   Message géolocalisation
+---------------------------------- */
+.geo-message { margin-top: var(--gap); font-style: italic; color: #2c3e50; }
+
+/* ----------------------------------
+   Bannière MAJ & Intro vidéo
+---------------------------------- */
+.update-banner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--btn-turquoise);
+  color: #fff; text-align: center;
+  padding: 12px; font-weight: bold;
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; z-index: 12000;
+}
+.update-banner button {
+  padding: 6px 12px;
+  background: var(--btn-yellow);
+  color: var(--txt-dark);
+  border: none; border-radius: 4px;
+}
+.update-banner button:hover {
+  background: var(--btn-yellow-hover);
+}
+
+/* wrapper plein écran */
+.intro-video-wrapper {
+  display: flex; flex-direction: column;
+  height: 100vh; background: black;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+/* iframe YouTube non-cliquable */
+.intro-video-iframe {
+  flex: 1; width: 100%; object-fit: contain;
+}
+/* boutons flottants */
+.intro-buttons-container {
+  position: fixed;
+  bottom: calc(env(safe-area-inset-bottom,0px) + var(--gap));
+  left: 50%; transform: translateX(-50%);
+  display: flex; flex-wrap: wrap;
+  gap: 12px; justify-content: center;
+  padding: 0 12px; z-index: 12000;
+  pointer-events: auto !important;
+}
+
+/* ----------------------------------
+   Bouton “Fermer” de la modale “En savoir plus”
+---------------------------------- */
+.button-close-modal {
+  background-color: var(--btn-red) !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--radius) !important;
+  padding: 8px 16px !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease !important;
+  margin: var(--gap) auto 0 auto !important;
+  display: block !important;
+}
+.button-close-modal:hover {
+  background-color: var(--btn-red-hover) !important;
 }
 
 /* ----------------------------------
    Media Queries
 ---------------------------------- */
 @media (max-width: 768px) {
-  .scoreboard-container {
-    font-size: 0.8rem;
-    padding: 4px 6px;
-  }
-  .endgame-button {
-    top: 20px;
-    right: 20px;
-  }
-  .leaflet-popup-content-wrapper {
-    max-width: 90vw !important;
-  }
-  .popup-content {
-    width: 90vw;
-    max-width: 350px;
-    margin: 0 auto;
-  }
+  .scoreboard-container { font-size: 0.8rem; padding: 4px 6px; }
+  .leaflet-popup-content-wrapper { max-width: 90vw !important; }
+  .popup-content { width: 90vw; max-width: 350px; margin: 0 auto; }
 }
-
-@media (max-width: 414px) {
-  .leaflet-popup .leaflet-popup-content {
-    max-width: 260px !important;
-    padding-right: 8px !important;
-  }
-}
-
-@media (max-width: 375px) {
-  .leaflet-popup .leaflet-popup-content {
-    max-width: 240px !important;
-    padding-right: 6px !important;
-  }
-}
-
-/* ----------------------------------
-   Boutons
----------------------------------- */
-.popup-close-button,
-.button-en-savoir-plus,
-.button-validation,
-.button-defi,
-.button-qcm,
-.endgame-button {
-  padding: 10px 16px;
-  font-size: 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.popup-close-button {
-  display: block;
-  margin: 24px auto 0 auto;
-  background-color: #fff;
-  color: #333;
-  border: 1px solid #ccc;
-}
-.popup-close-button:hover {
-  background-color: #f1f1f1;
-}
-
-.button-blue {
-  padding: 10px 16px;
-  background-color: #3498db;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.button-blue:hover {
-  background-color: #2980b9;
-}
-
-.button-orange {
-  padding: 10px 16px;
-  background-color: #e67e22;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.button-orange:hover {
-  background-color: #d35400;
-}
-
-.button-grey {
-  padding: 10px 16px;
-  background-color: #ecf0f1;
-  color: #333;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.button-grey:hover {
-  background-color: #bdc3c7;
-}
-
-/* ----------------------------------
-   État validé
----------------------------------- */
-.button-validation.validated,
-.button-defi.validated {
-  background-color: #2ecc71 !important;
-  cursor: default;
-  opacity: 0.7;
-}
-
-/* ----------------------------------
-   Autres éléments
----------------------------------- */
-.feedback-message {
-  font-style: italic;
-  color: #2c3e50;
-  margin-top: 10px;
-}
-
-.bold-input {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-.popup-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.popup-question {
-  font-size: 1rem;
-  font-weight: bold;
-  margin-bottom: 12px;
-}
-
-.popup-defi {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  margin-bottom: 12px;
-}
-
-.challenge-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-/* Style pour l’état de recherche de géolocalisation */
-.geo-message {
-  margin-top: 10px;
-  font-style: italic;
-  color: #2c3e50;
-}/* ----------------------------------
-   Boutons d'introduction (IntroVideo)
----------------------------------- */
-.button-intro {
-  padding: 12px 20px;
-  font-size: 1rem;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-.button-intro-sound {
-  background-color: #3498db;
-  color: white;
-}
-.button-intro-sound:hover {
-  background-color: #2980b9;
-}
-
-.button-intro-play {
-  background-color: #e67e22;
-  color: white;
-}
-.button-intro-play:hover {
-  background-color: #d35400;
-}
-.button-en-savoir-plus {
-  background-color: #9b59b6; /* Violet lisible */
-  color: #fff;
-  font-weight: bold;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.button-en-savoir-plus:hover {
-  background-color: #8e44ad;
-  transform: scale(1.03);
-}
-
 @media (max-width: 480px) {
   .endgame-button {
-    top: 60px; /* au lieu de 20px, pour dégager l’espace */
+    top: calc(env(safe-area-inset-top,0px) + 60px);
   }
-}@media (max-width: 480px) {
-  .popup-content {
-    padding-top: 36px;
+  .popup-content { padding-top: 36px; }
+  .intro-buttons-container {
+    bottom: calc(env(safe-area-inset-bottom,0px) + 15px);
+    width: 90%;
+    flex-direction: column;
   }
+  .button-intro { width: 100%; font-size: var(--font-small); padding: 10px; }
+  .button-qcm   { width: 100%; margin: 6px 0; }
+}
+@media (max-width: 375px) {
+  .leaflet-popup .leaflet-popup-content {
+    max-width: 240px !important; padding-right: 6px;
+  }
+}
+@media (max-width: 360px) {
+  .leaflet-popup .leaflet-popup-content {
+    max-width: 260px !important; padding-right: 8px;
+  }
+  .progress-label {
+    background: rgba(255,255,255,0.8);
+    padding: 2px 6px; border-radius: 4px;
+  }
+  .progress-bar-wrapper { margin-bottom: 16px; }
+}/* Empêche iOS Safari de zoomer quand le clavier apparaît */
+.popup-content input,
+.popup-content textarea,
+.bold-input {
+  font-size: 16px !important;
+  line-height: 1.4;
 }

@@ -1,31 +1,58 @@
-// src/components/IntroVideo.jsx
-import React from "react";
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
+import "./IntroVideo.css";
 
-const IntroVideo = ({ isMuted }) => {
-  // Construire l'URL selon isMuted
+const IntroVideo = ({ isMuted, onEnableSoundAndGeo, onEnterGame }) => {
+  // Si offline, on saute l’intro
+  useEffect(() => {
+    if (!navigator.onLine) {
+      onEnableSoundAndGeo();
+      onEnterGame();
+    }
+  }, [onEnableSoundAndGeo, onEnterGame]);
+
   const baseUrl = "https://www.youtube.com/embed/tzLJgC_D1Po";
-
-  // Paramètres communs : controls=1, playsinline=1
-  // Si isMuted => on ajoute autoplay=1 &mute=1 (et éventuellement &modestbranding=1)
-  const url = isMuted
-    ? `${baseUrl}?autoplay=1&controls=1&playsinline=1&mute=1&modestbranding=1`
-    : `${baseUrl}?autoplay=1&controls=1&playsinline=1&modestbranding=1`;
+  const params = [
+    "autoplay=1",
+    "controls=1",
+    "playsinline=1",
+    "modestbranding=1",
+    "rel=0",
+    isMuted ? "mute=1" : ""
+  ].filter(Boolean).join("&");
 
   return (
-    <iframe
-      src={url}
-      title="Vidéo d'introduction"
-      frameBorder="0"
-      allowFullScreen
-      style={{
-        width: "100%",
-        height: "100%",
-        objectFit: "contain",
-        display: "block",
-        backgroundColor: "black"
-      }}
-    />
+    <div className="intro-video-wrapper">
+      <iframe
+        src={`${baseUrl}?${params}`}
+        title="Vidéo d'intro"
+        frameBorder="0"
+        allow="autoplay; fullscreen"
+        allowFullScreen
+        className="intro-video-iframe"
+      />
+      <div className="intro-buttons-container">
+        <button
+          onClick={onEnableSoundAndGeo}
+          className="btn btn-turquoise button-intro button-intro-sound"
+        >
+          🎧 Activer le son + Géolocalisation
+        </button>
+        <button
+          onClick={onEnterGame}
+          className="btn btn-orange button-intro button-intro-play"
+        >
+          🎁 Accéder au jeu
+        </button>
+      </div>
+    </div>
   );
+};
+
+IntroVideo.propTypes = {
+  isMuted: PropTypes.bool.isRequired,
+  onEnableSoundAndGeo: PropTypes.func.isRequired,
+  onEnterGame: PropTypes.func.isRequired,
 };
 
 export default IntroVideo;
