@@ -1,11 +1,12 @@
 {
-  "name": "Cultu-Bike",
+  "name": "Cultu-Bike: Discover the Cap",
   "short_name": "CultuBike",
-  "description": "Le jeu de découverte culturelle à vélo autour de la ville",
-  "start_url": ".",
+  "description": "Explore the cultural heritage of Cap d’Antibes by bike—answer quizzes, complete challenges and unlock stories as you ride!",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#FDF3E7",
   "theme_color": "#1abc9c",
+  "orientation": "any",
   "icons": [
     {
       "src": "/images/icons/web-app-manifest-192x192.png",
@@ -17,5 +18,7 @@
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
 }

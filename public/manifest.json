@@ -1,34 +1,38 @@
-{
-  "name": "Cultu-Bike Villas & Légendes",
-  "short_name": "Cultu-Bike",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#FFFFFF",
-  "theme_color": "#FFFFFF",
-  "icons": [
-    {
-      "src": "/images/icons/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/icons/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "/images/iphone-xr-portrait.png",
-      "sizes": "414x895",
-      "type": "image/png",
-      "form_factor": "phone"
-    },
-    {
-      "src": "/images/ipad-landscape.png",
-      "sizes": "1200x899",
-      "type": "image/png",
-      "form_factor": "tablet"
-    }
-  ]
-}
+{{
+    "name": "Cultu-Bike: Discover the Cap",
+    "short_name": "Cultu-Bike",
+    "description": "Explore the hidden villas and local legends of the Cap d’Antibes by bike—answer quizzes, complete challenges, and unlock fascinating stories along the route!",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FFFFFF",
+    "theme_color": "#1abc9c",
+    "orientation": "any",
+    "icons": [
+      {
+        "src": "/images/icons/icon-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/images/icons/icon-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "screenshots": [
+      {
+        "src": "/images/iphone-xr-portrait.png",
+        "sizes": "414x895",
+        "type": "image/png",
+        "form_factor": "phone"
+      },
+      {
+        "src": "/images/ipad-landscape.png",
+        "sizes": "1200x899",
+        "type": "image/png",
+        "form_factor": "tablet"
+      }
+    ],
+    "related_applications": [],
+    "prefer_related_applications": false
+  }

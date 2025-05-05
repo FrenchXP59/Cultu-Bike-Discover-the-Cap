@@ -1,59 +1,70 @@
-// src/data/placesData.js
-
 export const PLACES_DATA = [
-  // Point de départ (randonnée vélo)
   {
     id: 0,
-    type: "depart",
-    lieu: "Point de départ (randonnée vélo)",
+    type: "start",
+    name: "Starting Point (Bike Tour)",
     latitude: 43.566486552061555,
     longitude: 7.115823122714841,
     questions: [],
-    info: "Ceci est votre point de départ pour la randonnée à vélo. Préparez-vous et vérifiez votre équipement avant de partir !",
-    infoShort: "Point de départ stratégique pour débuter votre aventure à vélo sur le Cap d'Antibes.",
+    info: "This is your starting point for the bike tour. Get ready and check your equipment before you set off!",
+    infoShort: "Get your wheels ready – this is where your cultural ride begins!",
     infoLong:
-      "Ce point de départ est idéalement situé pour vous lancer dans votre randonnée à vélo, vous offrant un accès rapide aux principaux sites touristiques et historiques du Cap d'Antibes. Préparez votre équipement et profitez pleinement de ce parcours qui allie sport et découverte culturelle.",
+      "This starting point is perfectly located to launch your bike tour, giving you quick access to the main historical and tourist sites of Cap d'Antibes. Prepare your gear and fully enjoy this route that blends sport with cultural discovery.",
     photo: "/images/villas/depart.jpg",
-    infoPlus: "Complétez ces informations plus tard."
+    infoPlus: "More details to come."
   },
   {
     id: 1,
-    lieu: "Villa Eilenroc",
+    name: "Villa Eilenroc",
     latitude: 43.54613,
     longitude: 7.13029,
     questions: [
       {
         id: 101,
-        question: "Quel est le lien entre le nom 'Eilenroc' et l'histoire de cette villa ?",
-        reponses_acceptables: ["Anagramme de Cornélie", "Cornélie", "Nom inversé de Cornélie", "Inversion de Cornélie", "Nom inversé", "Anagramme", "C'est une anagramme de Cornélie", "C'est le nom inversé de Cornélie", "Nom de Cornélie inversé", "Nom retourné de Cornélie", "Mot inversé de Cornélie", "C'est Cornélie à l'envers"],
-        indice: "Lisez le nom à l’envers.",
-        qcm: [
-          "Un mot grec signifiant paradis",
-          "Un hommage à une déesse",
-          "Un nom provençal",
-          "Anagramme de Cornélie"
+        question: "What is the link between the name ‘Eilenroc’ and the history of this villa?",
+        reponses_acceptables: [
+          "Anagram of Cornélie",
+          "Cornélie",
+          "Name reversed from Cornélie",
+          "Anagram",
+          "It's an anagram of Cornélie",
+          "It's Cornélie spelled backwards"
         ],
-        bonne_reponse: "Anagramme de Cornélie"
+        indice: "Read the name backwards.",
+        qcm: [
+          "A Greek word meaning paradise",
+          "A tribute to a goddess",
+          "A Provencal name",
+          "Anagram of Cornélie"
+        ],
+        bonne_reponse: "Anagram of Cornélie"
       }
     ],
-    defi: "Si la villa est ouverte, photographiez trois roses différentes dans le jardin. Identifiez-les ou inventez leurs noms.",
+    defi:
+      "If the villa is open, photograph three different roses in the garden. Identify them or invent your own names.",
     infoShort: "374 Av. Mrs Beaumont, 06160 Antibes",
     infoLong:
-      "La Villa Eilenroc est un joyau historique du Cap d'Antibes, dont le nom mystérieux, une anagramme de 'Cornélie', invite les visiteurs à découvrir une histoire riche en anecdotes et en légendes. Construite en 1867 par l’architecte Charles Garnier pour un riche hollandais, elle témoigne du faste de la Belle Époque. Située dans un cadre idyllique, la villa offre des jardins luxuriants où les roses s’épanouissent, symbolisant la beauté intemporelle de cette demeure. Plongez dans son univers et laissez-vous séduire par son charme unique.",
+      "Villa Eilenroc is a historic gem of Cap d'Antibes whose mysterious name is an anagram of 'Cornélie'. Built in 1867 by architect Charles Garnier for a wealthy Dutch patron, it reflects Belle Époque opulence. Its lush gardens, where roses bloom, symbolize the timeless beauty of this estate. Immerse yourself in its enchanting atmosphere and let its unique charm captivate you.",
     photo: "/images/villas/villa-eilenroc.jpg",
-    infoPlus: "Donnée en legs à la ville d’Antibes en 1982, la villa Eilenroc est aujourd’hui ouverte au public à certaines périodes de l’année. Son parc de 11 hectares, bordé par le sentier du littoral, abrite un jardin d'essences méditerranéennes et une oliveraie centenaire. À l'intérieur, la décoration préservée transporte les visiteurs dans l’opulence du XIXe siècle, avec du mobilier d’époque et des salons raffinés. Son huile d’olive, produite sur place, perpétue une tradition locale et s’inscrit dans le patrimoine vivant de la région."
+    infoPlus:
+      "Bequeathed to the city of Antibes in 1982, Villa Eilenroc is open to the public at certain times of the year. Its 11-hectare park, bordered by the coastal path, hosts a Mediterranean plant garden and a centenary olive grove. Inside, period furnishings evoke 19th-century luxury. Its locally-pressed olive oil continues a living regional tradition."
   },
   {
     id: 2,
-    lieu: "Villa Les Chênes Verts",
+    name: "Villa Les Chênes Verts",
     latitude: 43.55012,
     longitude: 7.12456,
     questions: [
       {
         id: 201,
-        question: "Quel célèbre écrivain français a séjourné régulièrement dans cette villa ?",
-        reponses_acceptables: ["Jules Verne", "Verne", "Jules-Gabriel Verne", "Jules", "L'auteur de Vingt Mille Lieues sous les mers", "L'écrivain de Vingt Mille Lieues sous les mers", "L'auteur de Voyage au centre de la Terre", "L'écrivain de Voyage au centre de la Terre"],
-        indice: "Il est l’auteur du 'Tour du monde en 80 jours'.",
+        question: "Which famous French writer regularly stayed at this villa?",
+        reponses_acceptables: [
+          "Jules Verne",
+          "Verne",
+          "Jules-Gabriel Verne",
+          "The author of Twenty Thousand Leagues Under the Sea"
+        ],
+        indice: "He also wrote ‘Around the World in 80 Days’.",
         qcm: [
           "Victor Hugo",
           "Jules Verne",
@@ -63,78 +74,94 @@ export const PLACES_DATA = [
         bonne_reponse: "Jules Verne"
       }
     ],
-    defi: "Observez attentivement le perron de la villa. Que symbolisent les éléments décoratifs visibles ? Indice : ils rappellent une invention célèbre au XIXe siècle…",
-    infoShort: "148 Bd J. F. Kennedy06160 Antibes.",
+    defi:
+      "Observe the villa’s front steps. What do the decorative elements symbolize? Hint: think of a famous 19th-century invention…",
+    infoShort: "148 Bd J. F. Kennedy, 06160 Antibes",
     infoLong:
-      "Située au cœur du Cap d'Antibes, la Villa Les Chênes Verts est célèbre pour avoir accueilli Jules Verne, l’un des écrivains visionnaires les plus marquants du XIXe siècle. Face à une mer scintillante, ce havre de paix lui offrait un cadre propice à l’écriture et à la réflexion. La vue imprenable sur la Méditerranée et la végétation luxuriante du domaine ont nourri son imaginaire, influençant peut-être certaines de ses descriptions maritimes. Laissez-vous porter par l’histoire de cette villa, témoin discret du passage d’un génie littéraire.",
+      "Located at the heart of Cap d'Antibes, Villa Les Chênes Verts is known for hosting Jules Verne, one of the 19th-century’s most visionary writers. Overlooking a sparkling sea, this peaceful retreat inspired much of his maritime imagination. Enjoy its literary heritage and lush surroundings.",
     photo: "/images/villas/villa-les-chenes-verts.jpg",
-    infoPlus: "Construite au XIXe siècle, la villa doit son nom aux majestueux chênes verts qui parsèment son domaine. Longtemps propriété privée, elle est aujourd’hui un symbole du lien entre la littérature et la Côte d’Azur. Bien que peu de traces directes des écrits de Jules Verne y subsistent, son séjour ici témoigne de l’attraction irrésistible qu’Antibes exerçait sur les artistes et intellectuels de son époque. Son architecture discrète, mêlant élégance et simplicité, s’intègre harmonieusement dans le paysage méditerranéen environnant."
+    infoPlus:
+      "Built in the 19th century, the villa is named after the majestic evergreen oaks on its grounds. Though few direct traces of Verne’s works remain, his stay here testifies to Antibes’ irresistible draw for artists and intellectuals of the era."
   },
   {
     id: 3,
-    lieu: "Villa Thuret",
+    name: "Villa Thuret",
     latitude: 43.56401,
     longitude: 7.12416,
     questions: [
       {
         id: 301,
-        question: "Quelle est la particularité botanique de cette villa ?",
-        reponses_acceptables: ["Jardin d’acclimatation", "Centre de recherche botanique", "Acclimatation", "Jardin acclimatation", "Jardin botanique", "Jardin exotique", "Jardin d'essai", "Parc botanique", "Jardin de plantes exotiques", "Espace d’acclimatation botanique", "Lieu d’acclimatation des plantes"],
-        indice: "Elle abrite un centre de recherche très spécial.",
-        qcm: [
-          "Jardin d’acclimatation",
-          "Serre d’orchidées rares",
-          "Verger d’agrumes anciens",
-          "Arboretum de plantes médicinales"
+        question: "What is this villa’s botanical specialty?",
+        reponses_acceptables: [
+          "Acclimatization garden",
+          "Botanical research center",
+          "Exotic plant trial garden"
         ],
-        bonne_reponse: "Jardin d’acclimatation"
+        indice: "It hosts a very special research center.",
+        qcm: [
+          "Acclimatization garden",
+          "Rare orchid greenhouse",
+          "Ancient citrus orchard",
+          "Medicinal plant arboretum"
+        ],
+        bonne_reponse: "Acclimatization garden"
       }
     ],
-    defi: " Depuis la grille ou le chemin, tentez d’observer et photographier trois essences végétales différentes. Si le jardin est ouvert, cherchez des plantes exotiques (panneaux présents). Sinon, notez ce que vous apercevez et imaginez leur origine.",
-    infoShort: " 90 Chem. Gustave Raymond, 06160 Antibes",
+    defi:
+      "From the gate or path, try to spot and photograph three different plant species. If the garden is open, look for exotic plants (signs posted). Otherwise, note what you see and imagine their origins.",
+    infoShort: "90 Chemin Gustave Raymond, 06160 Antibes",
     infoLong:
-      "La Villa Thuret abrite un jardin d’acclimatation unique qui sert de laboratoire botanique en plein air. Créé au XIXe siècle par le botaniste Gustave Thuret, ce lieu fascinant a été conçu pour tester l’acclimatation de plantes exotiques sur la Côte d’Azur. Aujourd’hui, il rassemble plus de 2 500 espèces venues des quatre coins du monde, offrant aux visiteurs une promenade immersive à travers une diversité végétale exceptionnelle. Chaque visite réserve de nouvelles découvertes, entre science et émerveillement.",
+      "Villa Thuret houses a unique botanical acclimatization garden that served as an outdoor research lab. Created in the 19th century by botanist Gustave Thuret, it now contains over 2,500 species from around the world. A must for plant lovers and science enthusiasts alike.",
     photo: "/images/villas/villa-thuret.jpg",
-    infoPlus: "Classé Jardin Remarquable, le domaine de 3,5 hectares appartient aujourd’hui à l’INRAE, qui y mène des recherches sur l’adaptation des espèces végétales au climat méditerranéen. Les cyprès, eucalyptus, palmiers et autres essences rares en font un véritable musée vivant à ciel ouvert. En parcourant ses allées ombragées, on comprend pourquoi tant de scientifiques et de passionnés de botanique considèrent ce jardin comme un joyau du patrimoine naturel d’Antibes."
+    infoPlus:
+      "Designated a Remarkable Garden, the 3.5-hectare estate is now managed by INRAE, which studies species’ adaptation to the Mediterranean climate. Cypress, eucalyptus, palms and other rare specimens form a living open-air museum."
   },
   {
     id: 4,
-    lieu: "Villa La Calade",
+    name: "Villa La Calade",
     latitude: 43.55769,
     longitude: 7.12249,
     questions: [
       {
         id: 401,
-        question: "Quel style architectural caractérise cette villa construite en 1937 ?",
-        reponses_acceptables: ["Style paquebot", "Paquebot", "Style paquebot des années 30", "Architecture paquebot", "Style Streamline Moderne", "Streamline Moderne", "Style Art Déco paquebot", "Art Déco paquebot", "Style inspiré des paquebots", "Design paquebot"],
-        indice: "Pensez aux grands navires de l’époque.",
-        qcm: [
-          "Style provençal",
-          "Style Art Déco",
-          "Style paquebot",
-          "Style néoclassique"
+        question: "Which architectural style characterizes this villa built in 1937?",
+        reponses_acceptables: [
+          "Streamline Moderne",
+          "Ship-style architecture",
+          "Ocean-liner inspired",
+          "Ocean-liner style",
+          "Paquebot style",
+          "Art Deco paquebot"
         ],
-        bonne_reponse: "Style paquebot"
+        indice: "Think of the great ocean liners of the era — rounded balconies, metal railings, and nautical lines.",
+        qcm: [
+          "Mediterranean revival",
+          "Streamline Moderne",
+          "Classical Art Deco",
+          "Neoclassical"
+        ],
+        bonne_reponse: "Streamline Moderne"
       }
     ],
-    defi: "Trouvez et photographiez trois éléments architecturaux qui rappellent un navire sur la façade.",
+    defi: "Find and photograph three architectural elements on the façade that evoke a ship.",
     infoShort: "81 Passage du Diable, 06160 Antibes",
     infoLong:
-      "Construite en 1937, la Villa La Calade est un exemple fascinant du style paquebot, inspiré par l’architecture des grands liners transatlantiques. Ses lignes épurées, ses balcons en forme de ponts et ses hublots rappellent l’élégance des paquebots des années 30. Ce bijou moderniste, conçu pour marier innovation et raffinement, reflète l’audace architecturale de son époque. Située face à la Méditerranée, elle incarne à merveille le lien entre la mer et l’architecture avant-gardiste.",
+      "Built in 1937, Villa La Calade is a striking example of ship-style architecture inspired by transatlantic liners. Its sleek lines, terrace-like balconies and porthole windows echo 1930s elegance. Designed to blend innovation with refinement, it faces the Mediterranean, forging a bond between sea and modernism.",
     photo: "/images/villas/villa-la-calade.jpg",
-    infoPlus: "La Villa La Calade illustre l’influence du mouvement Art Déco dans l’architecture balnéaire. Son style se caractérise par des courbes dynamiques, des terrasses en cascade et une luminosité exceptionnelle grâce à de larges baies vitrées. Elle a appartenu à **Max Heilbronn**, PDG des **Galeries Lafayette** et résistant pendant la Seconde Guerre mondiale. Peu de villas de ce type subsistent sur la Côte d’Azur, faisant d’elle une véritable curiosité architecturale. Aujourd’hui privée, elle continue de fasciner les amateurs d’architecture maritime et moderne."
+    infoPlus:
+      "This modernist gem, once owned by Max Heilbronn of Galeries Lafayette, is one of the Côte d’Azur’s rare paquebot-style villas. It continues to fascinate architecture buffs with its curved terraces and panoramic sea views."
   },
   {
     id: 5,
-    lieu: "Villa Aujourd'hui",
+    name: "Villa Aujourd'hui",
     latitude: 43.55116,
-    longitude: 7.11980,
+    longitude: 7.1198,
     questions: [
       {
         id: 501,
-        question: "Quel célèbre architecte américain a conçu cette villa en 1938 ?",
-        reponses_acceptables: ["Barry Dierks", "Dierks", "Barry D.", "Barry Dierks architecte", "L'architecte Barry Dierks", "L'architecte américain Barry Dierks"],
-        indice: "Son prénom est Barry.",
+        question: "Which famous American architect designed this villa in 1938?",
+        reponses_acceptables: ["Barry Dierks", "Dierks", "Barry"],
+        indice: "His first name is Barry.",
         qcm: [
           "Frank Lloyd Wright",
           "Barry Dierks",
@@ -144,163 +171,158 @@ export const PLACES_DATA = [
         bonne_reponse: "Barry Dierks"
       }
     ],
-    defi: "Réalisez un croquis rapide de la façade en mettant en évidence ses caractéristiques modernistes.",
-    infoShort: "1546 boulevard Maréchal Juin - Cap d'Antibe",
+    defi:
+      "Sketch the façade, capturing its modernist flair.",
+    infoShort: "1546 Boulevard Maréchal Juin, Cap d'Antibes",
     infoLong:
-      "Construite en 1938 par l'architecte américain Barry Dierks, la Villa Aujourd'hui est une référence du modernisme en Méditerranée. Avec ses lignes épurées, ses larges baies vitrées et sa façade audacieuse, elle incarne une vision avant-gardiste du luxe balnéaire. Conçue pour fusionner avec son environnement, elle offre une connexion unique entre l’intérieur et l’extérieur, captant la lumière et la douceur du climat du Cap d’Antibes. Cette villa est un témoignage exceptionnel du design architectural du XXe siècle.",
+      "Designed in 1938 by American architect Barry Dierks, Villa Aujourd'hui exemplifies Mediterranean modernism. Its clean lines, vast windows and daring façade blend interior and exterior, capturing light and the region’s gentle climate.",
     photo: "/images/villas/villa-aujourdhui.jpg",
-    infoPlus: "Villa Aujourd’hui fut l’une des résidences prisées du Cap d’Antibes, fréquentée par des personnalités du monde du cinéma et de la haute société. Son architecte, Barry Dierks, a marqué la Côte d’Azur avec ses réalisations modernistes emblématiques. Propriété privée, elle demeure un exemple rare du style Streamline Moderne, caractérisé par ses formes arrondies et son esthétique inspirée de l’aéronautique et des paquebots de l’époque. Son élégance intemporelle en fait un joyau architectural préservé."
+    infoPlus:
+      "A favorite among cinema and high-society figures, Villa Aujourd'hui remains a rare Streamline Moderne icon, its curves inspired by aeronautics and ocean liners."
   },
   {
     id: 6,
-    lieu: "Villa Soleil (Cap-Eden-Roc)",
+    name: "Villa Soleil (Cap-Eden-Roc)",
     latitude: 43.5491241,
     longitude: 7.1202982,
     questions: [
       {
         id: 601,
-        question: "Quelle était la fonction originale de cette villa avant de devenir un hôtel de luxe ?",
-        reponses_acceptables: ["Pavillon de chasse", "Chasse", "Ancien pavillon de chasse", "Résidence de chasse", "Maison de chasse", "Domaine de chasse", "Logis de chasse", "Pavillon dédié à la chasse"],
-        indice: "Elle a été construite pour un homme de presse.",
+        question: "What was this villa’s original function before becoming a luxury hotel?",
+        reponses_acceptables: ["Hunting lodge", "Pavilion for hunting"],
+        indice: "It was built for a press magnate.",
         qcm: [
-          "Résidence privée",
+          "Private residence",
           "Sanatorium",
-          "École d’été pour artistes",
-          "Pavillon de chasse"
+          "Summer art school",
+          "Hunting lodge"
         ],
-        bonne_reponse: "Pavillon de chasse"
+        bonne_reponse: "Hunting lodge"
       }
     ],
-    defi: "Dessinez ou photographiez le portail ou les pins parasols qui cachent la villa. Une autre façon d’immortaliser un lieu mythique… sans le voir vraiment.",
+    defi:
+      "Photograph the gate or the umbrella pines that hide the villa. A way to capture a legendary site without seeing it directly.",
     infoShort: "167-165 Bd J. F. Kennedy, 06160 Antibes",
     infoLong:
-      "Nichée au cœur du Cap-Eden-Roc, la Villa Soleil a connu une transformation spectaculaire. Conçue à l'origine comme pavillon de chasse pour Auguste de Villemessant, fondateur du Figaro, elle fut progressivement agrandie avant de devenir l'un des hôtels les plus emblématiques de la Côte d'Azur. Son architecture élégante et ses terrasses ouvertes sur la Méditerranée en font un lieu d’exception, prisé par les célébrités et la haute société depuis plus d'un siècle.",
+      "Nestled in Cap-Eden-Roc, Villa Soleil began as Auguste de Villemessant’s hunting lodge. Over time it evolved into one of the Côte d’Azur’s most iconic hotels, beloved by celebrities for its elegant architecture and sea-facing terraces.",
     photo: "/images/villas/villa-soleil.jpg",
-    infoPlus: "Devenue l’Hôtel du Cap-Eden-Roc, cette villa mythique a accueilli des figures légendaires du cinéma, de la littérature et de la politique, d’Ernest Hemingway à Elizabeth Taylor. Son cadre idyllique et son service d’exception en ont fait une référence en matière de luxe et d’art de vivre à la française. Son célèbre ponton et sa piscine d’eau de mer creusée dans la roche sont des symboles de l’élégance intemporelle qui définit cet établissement légendaire."
+    infoPlus:
+      "Now the Hôtel du Cap-Eden-Roc, it has hosted legends from Hemingway to Elizabeth Taylor. Its cliffside pool and iconic jetty epitomize timeless luxury."
   },
   {
     id: 7,
-    lieu: "Villa Bloc",
+    name: "Villa Bloc",
     latitude: 43.56536,
     longitude: 7.13458,
     questions: [
       {
         id: 701,
-        question: "Quelle est la particularité architecturale unique de cette villa construite en 1959 ?",
-        reponses_acceptables: ["Volumes suspendus", "Structure suspendue", "Architecture suspendue", "Éléments en porte-à-faux", "Volumes en porte-à-faux", "Conception en suspension", "Parties suspendues", "Éléments suspendus"],
-        indice: "Pensez à la sculpture et à l’architecture combinées.",
+        question: "What unique architectural feature defines this villa built in 1959?",
+        reponses_acceptables: ["Cantilevered volumes", "Suspended structure"],
+        indice: "Think of sculpture meeting architecture.",
         qcm: [
-          "Entièrement souterraine",
-          "Volumes suspendus",
-          "Construite en verre",
-          "Fait de matériaux recyclés"
+          "Fully underground",
+          "Cantilevered volumes",
+          "Glass structure",
+          "Recycled materials"
         ],
-        bonne_reponse: "Volumes suspendus"
+        bonne_reponse: "Cantilevered volumes"
       }
     ],
-    defi: "Réalisez un dessin abstrait inspiré par les formes sculpturales de la villa.",
-    infoShort: "31, avenue Aimée-Bourreau,  Antibes ",
+    defi:
+      "Create an abstract drawing inspired by the sculptural forms of the villa.",
+    infoShort: "31 Avenue Aimée-Bourreau, Antibes",
     infoLong:
-      "Construite en 1959 par l’architecte André Bloc, la Villa Bloc est une véritable sculpture habitée qui défie les conventions architecturales. Ses volumes suspendus et imbriqués jouent avec la lumière, créant un équilibre subtil entre ombre et transparence. À mi-chemin entre l’art et l’architecture, elle incarne une approche visionnaire de l’espace, où chaque angle et surface raconte une histoire de modernité et d’expérimentation. Ce chef-d’œuvre unique attire les passionnés d’architecture et de design en quête d’innovation et de perspectives nouvelles.",
+      "Designed by André Bloc in 1959, Villa Bloc is a radical sculptural residence that defies architectural norms. Its suspended volumes and interlocking forms play with light and shadow, merging art and architecture in an avant-garde vision.",
     photo: "/images/villas/villa-bloc.jpg",
-    infoPlus: "Œuvre majeure d’André Bloc, la Villa Bloc est une illustration parfaite du courant moderniste et de l’architecture sculpturale. Largement inspiré par l’abstraction et le constructivisme, Bloc y a expérimenté des formes radicales, jouant sur la rupture des lignes traditionnelles. La villa s’intègre harmonieusement à son environnement naturel tout en affichant une esthétique brute et avant-gardiste. Aujourd’hui classée parmi les créations architecturales remarquables du XXe siècle, elle demeure un symbole de la fusion entre art, design et habitation."
+    infoPlus:
+      "A masterpiece of modernist sculpture, Villa Bloc remains a landmark of 20th-century innovation on the Côte d’Azur."
   },
   {
     id: 8,
-    lieu: "Port de l'olivette",
+    name: "Port de l’Olivette",
     latitude: 43.55117,
     longitude: 7.12038,
     questions: [
       {
         id: 801,
-        question: "Quel est le principal attrait du Port de l’Olivette ?",
-        reponses_acceptables: ["Port de pointus", "Bateaux traditionnels", "Bateaux en bois", "Vieux bateaux", "Port historique", "Port de bateaux traditionnels", "Port de bateaux en bois", "Port de vieux bateaux", "Port typique", "Petit port historique", "Port de pêche traditionnel", "Port avec des pointus"
-        ],
-        indice: "Ce sont des embarcations typiques de la Méditerranée.",
+        question: "What is the main attraction at Port de l’Olivette?",
+        reponses_acceptables: ["Traditional fishing boats", "Wooden boats", "Historic pointus"],
+        indice: "These are typical Mediterranean vessels.",
         qcm: [
-          "Bateaux en fibre de verre",
-          "Bateaux militaires",
-          "Voiliers modernes",
-          "Bateaux traditionnels"
+          "Fiberglass boats",
+          "Military vessels",
+          "Modern yachts",
+          "Traditional wooden boats"
         ],
-        bonne_reponse: "Bateaux traditionnels"
+        bonne_reponse: "Traditional wooden boats"
       }
     ],
-    defi: "Trouvez et photographiez trois pointus aux couleurs différentes et identifiez le nom inscrit sur l’un d’eux.",
-    infoShort: "1471 boulevard du Maréchal Juin, Antibes",
+    defi:
+      "Photograph three pointus (traditional boats) in different colors and note the name on one of them.",
+    infoShort: "1471 Boulevard du Maréchal Juin, Antibes",
     infoLong:
-      "Le Port de l'Olivette, situé au cœur du Cap d'Antibes, est un port historique où l'on peut encore admirer les traditionnels pointus. Ces bateaux en bois, aux couleurs variées, témoignent des savoir-faire anciens et de l'histoire maritime de la région. En flânant dans ce port authentique, vous découvrirez un univers riche en traditions et en récits passionnants sur la vie en bord de mer.",
+      "Port de l’Olivette is a historic harbor at Cap d'Antibes where traditional wooden pointus still dock. Their vibrant hues and artisanal curves embody the spirit of the Mediterranean’s maritime heritage.",
     photo: "/images/villas/port-de-l-olivette.jpg",
-    infoPlus: "Le Port de l’Olivette est entretenu par une association de passionnés qui veille à la conservation des pointus et au respect des traditions maritimes. Chaque hiver, ces bateaux sont sortis de l’eau pour être soigneusement restaurés et entretenus par leurs propriétaires, perpétuant un savoir-faire artisanal transmis de génération en génération. Contrairement aux ports modernes, l’Olivette est exclusivement réservé aux embarcations traditionnelles, offrant un cadre préservé et intemporel. Son ambiance chaleureuse et ses reflets colorés au coucher du soleil en font l’un des plus beaux joyaux maritimes de la Côte d’Azur."
+    infoPlus:
+      "Maintained by local enthusiasts, these boats are cared for each winter, preserving centuries-old traditions. Unlike modern marinas, Olivette is exclusive to these historic vessels."
   },
-    {
-      id: 9,
-      lieu: "Villa La Vigie",
-      latitude: 43.564188,
-      longitude: 7.115879,
-      questions: [
-        {
-          id: 901,
-          question: "Quel célèbre couturier a possédé cette villa pendant plus de une décennie ?",
-          reponses_acceptables: [
-            "Karl Lagerfeld",
-            "Lagerfeld",
-            "Karl",
-            "Karl L.",
-            "Le couturier Karl Lagerfeld",
-            "Le styliste Karl Lagerfeld",
-            "Lagerfeld Karl",
-            "Le créateur Karl Lagerfeld"
-          ],
-          indice: "Il est connu pour son style monochrome et ses lunettes noires.",
-          qcm: [
-            "Yves Saint Laurent",
-            "Christian Dior",
-            "Karl Lagerfeld",
-            "Coco Chanel"
-          ],
-          bonne_reponse: "Karl Lagerfeld"
-        }
-      ],
-      defi: "Depuis Port Crouton, empruntez le sentier du littoral en direction de la Villa La Vigie. Observez-la depuis un angle différent de la route principale. Prenez une photo ou réalisez un croquis de ce point de vue inhabituel. Bonus : imaginez le shooting de mode parfait dans ce décor.",
-      infoShort: "30, 37 boulevard Edouard-Baudoin, Antibes",
-      infoLong:
-        "Construite en 1902 par Sir William Ingram, la villa séduit par ses volumes, son jardin exotique et sa vue sur la Méditerranée. Karl Lagerfeld y installa sa résidence à partir de 1986, y exposant ses collections dans un décor à son image : classique, exigeant, hors du temps.. Ce joyau architectural allie élégance classique et modernité, avec de vastes terrasses offrant un panorama spectaculaire sur la mer. Loin du tumulte, cette villa incarne un art de vivre sophistiqué, mêlant luxe, histoire et inspiration artistique dans un cadre idyllique.",
-      photo: "/images/villas/villa-la-vigie.jpg",
-      infoPlus:
-        "Longtemps utilisée comme résidence d’été par Karl Lagerfeld, la Villa La Vigie reflète le goût du créateur pour le raffinement et l’exclusivité. Restaurée avec soin, elle conserve des éléments architecturaux remarquables tout en offrant des équipements luxueux. Son emplacement privilégié, entouré de pins et de jardins méditerranéens, en fait un lieu prisé par les amateurs de sérénité et d’élégance. Aujourd’hui, cette demeure iconique continue d’attirer l’attention, témoignant de son riche passé et de l’empreinte laissée par son illustre propriétaire."
-    },
-    {
-      id: 10,
-      lieu: "Villa L'Olivette",
-      latitude: 43.551153,
-      longitude: 7.121158,
-      questions: [
-        {
-          id: 1001,
-          question: "Quel artiste comique, connu sous un nom de scène facétieux, a acheté la villa L'Olivette en 1919 ?",
-          reponses_acceptables: [
-            "Dranem",
-            "Armand Ménard",
-            "Armand Menard",
-            "Armand Ménard dit Dranem"
-          ],
-          indice: "Son vrai nom est Armand Ménard, mais il a choisi un pseudonyme en anacyclique.",
-          qcm: [
-            "Maurice Chevalier",
-            "Armand 'Dranem' Ménard",
-            "Charles Trenet",
-            "Henri Garat"
-          ],
-          bonne_reponse: "Armand 'Dranem' Ménard"
-        }
-      ],
-      defi: "Prenez une pose comique façon music-hall devant l’un des visages sculptés. Vous êtes le Dranem du jour ",
-      infoShort: "1421 Bd Maréchal Juin, 06160 Antibes",
-      infoLong:
-        "La villa L’Olivette, édifiée en 1903 par un peintre décorateur, fut acquise en 1919 par le célèbre chanteur fantaisiste Dranem (Armand Ménard). Située face à la charmante plage de l’Olivette, elle marie simplicité et convivialité, reflétant l’âme généreuse de son propriétaire d’autrefois. Entourée d’un jardin isolé, la villa offrait un havre de paix où Dranem, sa famille et ses amis profitaient de moments de détente, de parties de cartes, ainsi que de spectacles impromptus. Plusieurs bustes représentant son visage rieur ornent encore les piliers du portail, rappelant l’esprit chaleureux qui imprègne ce lieu historique.",
-      photo: "/images/villas/l-olivette.jpg",
-      infoPlus:
-        "Après le décès de Dranem en 1935, la villa connut divers propriétaires. Au fil du temps, L’Olivette a préservé son charme discret et sa vue imprenable sur la mer. Les actuels occupants veillent à conserver les bustes de Dranem, témoignages de l’empreinte joviale qu’il a laissée. Le port de l’Olivette tout proche, avec ses pointus colorés, ajoute au caractère pittoresque du site, faisant de cette demeure un précieux héritage du Cap d’Antibes."
-    }
-  ]
+  {
+    id: 9,
+    name: "Villa La Vigie",
+    latitude: 43.564188,
+    longitude: 7.115879,
+    questions: [
+      {
+        id: 901,
+        question: "Which famous fashion designer owned this villa for over a decade?",
+        reponses_acceptables: ["Karl Lagerfeld", "Lagerfeld"],
+        indice: "Known for his monochrome outfits and dark sunglasses.",
+        qcm: [
+          "Yves Saint Laurent",
+          "Christian Dior",
+          "Karl Lagerfeld",
+          "Coco Chanel"
+        ],
+        bonne_reponse: "Karl Lagerfeld"
+      }
+    ],
+    defi:
+      "From Port Crouton, follow the coastal path toward Villa La Vigie. Sketch or photograph the villa from an unusual angle. Bonus: imagine a fashion shoot here.",
+    infoShort: "30-37 Boulevard Édouard-Baudoin, Antibes",
+    infoLong:
+      "Built in 1902 by Sir William Ingram, Villa La Vigie exudes classic charm and exotic landscaping. Karl Lagerfeld made it his home from 1986, filling it with his collections in a timeless, minimalist setting overlooking the Mediterranean.",
+    photo: "/images/villas/villa-la-vigie.jpg",
+    infoPlus:
+      "Restored with care, it retains original architectural details alongside luxurious modern comforts. Surrounded by pine groves, it remains a serene retreat for design and fashion lovers."
+  },
+  {
+    id: 10,
+    name: "Villa L’Olivette",
+    latitude: 43.551153,
+    longitude: 7.121158,
+    questions: [
+      {
+        id: 1001,
+        question: "Which comedic artist, known by a playful stage name, bought Villa L’Olivette in 1919?",
+        reponses_acceptables: ["Dranem", "Armand Ménard", "Armand 'Dranem' Ménard"],
+        indice: "His real name is Armand Ménard, but he chose an anacyclic pseudonym.",
+        qcm: [
+          "Maurice Chevalier",
+          "Armand 'Dranem' Ménard",
+          "Charles Trenet",
+          "Henri Garat"
+        ],
+        bonne_reponse: "Armand 'Dranem' Ménard"
+      }
+    ],
+    defi:
+      "Strike your best music-hall pose in front of one of the sculpted busts — be the Dranem of the day!",
+    infoShort: "1421 Boulevard du Maréchal Juin, Antibes",
+    infoLong:
+      "Built in 1903 by a decorative painter, Villa L’Olivette became the home of comedian Dranem in 1919. Facing the lovely Olivette beach, its joyful spirit lives on in the sculpted busts that adorn its entrance.",
+    photo: "/images/villas/l-olivette.jpg",
+    infoPlus:
+      "After Dranem’s death in 1935, the villa passed through many hands, yet its intimate charm and panoramic sea views remain unchanged—a testament to its storied past."
+  }
+];

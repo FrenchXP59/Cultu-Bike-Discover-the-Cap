@@ -19,7 +19,7 @@ const ScoreRanking = ({ onRestart, onReturnToGame }) => {
         minHeight: "100vh",
       }}
     >
-      <h2>🏆 Classement des Scores</h2>
+      <h2>🏆 Score Ranking</h2>
       {scores.length === 0 ? (
         <p>Aucun score enregistré pour le moment.</p>
       ) : (
@@ -45,7 +45,7 @@ const ScoreRanking = ({ onRestart, onReturnToGame }) => {
             cursor: "pointer",
           }}
         >
-          🗺️ Retour à la carte
+          🗺️ Return to Map
         </button>
 
         <button
@@ -59,7 +59,7 @@ const ScoreRanking = ({ onRestart, onReturnToGame }) => {
             cursor: "pointer",
           }}
         >
-          🔄 Rejouer une partie
+          🔄 Play Again
         </button>
       </div>
     </div>

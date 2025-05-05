@@ -1,11 +1,12 @@
 // src/components/QuestionPopup.jsx
 import React, { useState, useEffect, useContext } from "react";
 import { GameContext } from "../GameContext.jsx";
-import { isCorrectAnswer } from "../utils/stringUtils";
-import { playSound } from "../utils/soundManager";
+import { isCorrectAnswer } from "../utils/stringUtils.js";
+import { playSound } from "../utils/soundManager.js";
 
 const QuestionPopup = ({ place, onQuestionDone }) => {
-  const { score, setScore, answeredQuestions, addAnsweredQuestion } = useContext(GameContext);
+  const { score, setScore, answeredQuestions, addAnsweredQuestion } =
+    useContext(GameContext);
 
   const [userAnswer, setUserAnswer] = useState("");
   const [errorCount, setErrorCount] = useState(0);
@@ -13,7 +14,7 @@ const QuestionPopup = ({ place, onQuestionDone }) => {
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [validatedAnswer, setValidatedAnswer] = useState("");
 
-  // Réinitialisation à chaque nouveau lieu
+  // reset on place change
   useEffect(() => {
     setUserAnswer("");
     setErrorCount(0);
@@ -22,23 +23,25 @@ const QuestionPopup = ({ place, onQuestionDone }) => {
     setValidatedAnswer("");
   }, [place]);
 
-  // On prend toujours la première (et unique) question
   const question = place.questions?.[0];
-  if (!question) return <p>Aucune question pour ce lieu.</p>;
+  if (!question) return <p>No question for this location.</p>;
 
-  const uniqueQuestionId = `${place.id}-${question.id}`;
-  const isAnswered = answeredQuestions.includes(uniqueQuestionId);
+  const uid = `${place.id}-${question.id}`;
+  const isAnswered = answeredQuestions.includes(uid);
 
-  const handleValidate = (providedAnswer) => {
+  const handleValidate = (provided) => {
     playSound("buttonClick");
-    const answerToCheck = providedAnswer ?? userAnswer;
-    const correct = isCorrectAnswer(answerToCheck, question.reponses_acceptables);
+    const answerToCheck = provided ?? userAnswer;
+    const correct = isCorrectAnswer(
+      answerToCheck,
+      question.reponses_acceptables
+    );
 
     if (correct) {
-      const pointsToAdd = errorCount === 0 ? 1 : 0.5;
-      setScore(score + pointsToAdd);
-      addAnsweredQuestion(uniqueQuestionId);
-      setFeedbackMessage("✅ Bonne réponse !");
+      const pts = errorCount === 0 ? 1 : 0.5;
+      setScore(score + pts);
+      addAnsweredQuestion(uid);
+      setFeedbackMessage("✅ Correct answer!");
       setQuestionDone(true);
       setValidatedAnswer(answerToCheck);
       playSound("goodAnswer");
@@ -48,12 +51,18 @@ const QuestionPopup = ({ place, onQuestionDone }) => {
       setErrorCount((c) => c + 1);
 
       if (errorCount === 0) {
-        setFeedbackMessage("😅 1ʳᵉ erreur : un indice va s'afficher.");
+        setFeedbackMessage(
+          "😅 First mistake – a hint will now be shown."
+        );
       } else if (errorCount === 1) {
-        setFeedbackMessage("⚠️ 2ᵉ erreur : passage au QCM !");
+        setFeedbackMessage(
+          "⚠️ Second mistake – switching to multiple choice."
+        );
       } else {
-        setFeedbackMessage(`❌ Mauvaise réponse. La bonne réponse était : ${question.bonne_reponse}`);
-        addAnsweredQuestion(uniqueQuestionId);
+        setFeedbackMessage(
+          `❌ Wrong. The right answer was: ${question.bonne_reponse}`
+        );
+        addAnsweredQuestion(uid);
         setQuestionDone(true);
         onQuestionDone?.();
       }
@@ -68,20 +77,23 @@ const QuestionPopup = ({ place, onQuestionDone }) => {
 
       {(questionDone || isAnswered) ? (
         <>
-          <p className="feedback-message" style={{ color: "green" }}>Question déjà répondue.</p>
+          <p className="feedback-message" style={{ color: "green" }}>
+            Question already answered.
+          </p>
           {validatedAnswer && (
-            <p className="bold-answer">Votre réponse : {validatedAnswer}</p>
+            <p className="bold-answer">Your answer: {validatedAnswer}</p>
           )}
         </>
       ) : (
         <>
+          {/* free input until 2nd error */}
           {errorCount < 2 && (
-            <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+            <div style={{ display: "flex", gap: 10, marginBottom: 10 }}>
               <input
                 type="text"
                 value={userAnswer}
                 onChange={(e) => setUserAnswer(e.target.value)}
-                placeholder="Votre réponse"
+                placeholder="Your answer"
                 className="bold-input"
                 style={{ flex: 1 }}
               />
@@ -89,22 +101,37 @@ const QuestionPopup = ({ place, onQuestionDone }) => {
                 className="btn btn-blue"
                 onClick={() => handleValidate()}
               >
-                ✅ Valider
+                ✅ Submit
               </button>
             </div>
           )}
 
+          {/* show hint after first error */}
+          {errorCount >= 1 && (
+            <p className="hint">💡 {question.indice}</p>
+          )}
+
+          {/* MCQ on 3rd attempt */}
           {errorCount === 2 && (
             <>
-              <p><strong>🎓 Dernière chance (QCM) :</strong></p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "10px", marginBottom: "10px" }}>
-                {question.qcm.map((option, idx) => (
+              <p>
+                <strong>🎓 Last chance (MCQ):</strong>
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 10,
+                  marginBottom: 10,
+                }}
+              >
+                {question.qcm.map((opt, i) => (
                   <button
-                    key={idx}
+                    key={i}
                     className="btn btn-purple button-qcm"
-                    onClick={() => handleValidate(option)}
+                    onClick={() => handleValidate(opt)}
                   >
-                    {option}
+                    {opt}
                   </button>
                 ))}
               </div>
@@ -113,6 +140,7 @@ const QuestionPopup = ({ place, onQuestionDone }) => {
         </>
       )}
 
+      {/* feedback message */}
       {feedbackMessage && (
         <p className="feedback-message">{feedbackMessage}</p>
       )}

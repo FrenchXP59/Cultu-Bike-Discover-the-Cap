@@ -15,17 +15,17 @@ const DefiPopup = React.memo(({ place }) => {
       // +2 points
       setScore(score + 2);
       addCompletedChallenge(place.id);
-      setFeedbackMessage("✅ Défi complété, +2 points !");
+      setFeedbackMessage("✅ Challenge completed! +2 points");
       playSound("goodAnswer");
     } else {
-      setFeedbackMessage("🔁 Défi déjà validé.");
+      setFeedbackMessage("🔁 Challenge already completed.");
     }
   };
 
   return (
     <div className="popup-defi-container" style={{ marginTop: "10px" }}>
       <p className="popup-defi">
-        <strong>🎯 Défi :</strong> {place.defi}
+        <strong>🎯 Challenge:</strong> {place.defi}
       </p>
 
       <button
@@ -34,7 +34,7 @@ const DefiPopup = React.memo(({ place }) => {
         disabled={isChallengeDone}
         style={{ marginRight: "8px", marginBottom: "8px" }}
       >
-        {isChallengeDone ? "✅ Défi validé !" : "🚀 J'ai fait le défi"}
+        {isChallengeDone ? "✅ Challenge completed!" : "🚀 I’ve completed the challenge"}
       </button>
 
       {feedbackMessage && (

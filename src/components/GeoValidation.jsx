@@ -38,7 +38,7 @@ const GeoValidation = ({ targetLatitude, targetLongitude, pointReward = 1 }) => 
       setMessage(`✅ Bonus ! À ${Math.round(dist)} m du point.`);
       setValidated(true);
     } else {
-      setMessage(`📏 À ${Math.round(dist)} m. Rapproche-toi.`);
+      setMessage(`📏 À ${Math.round(dist)} m.🔍 Move closer to the spot to confirm your location`);
     }
   };
 
@@ -50,10 +50,10 @@ const GeoValidation = ({ targetLatitude, targetLongitude, pointReward = 1 }) => 
         className={`button-blue ${validated ? "validated" : ""}`}
       >
         {validated
-          ? "✅ Position validée !"
+          ? "✅ Location confirmed!"
           : loadingLoc
-            ? "📍 Récupération position…"
-            : "📍 Valider ma position"}
+            ? "📍 Fetching location…"
+            : "📍 Confirm my location"}
       </button>
       {message && <p className="feedback-message">{message}</p>}
     </div>

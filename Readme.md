@@ -1,48 +1,36 @@
-# 🚴‍♂️ Cultu Bike – Villas & Légendes du Cap d’Antibes
+🚴‍♂️ Cultu Bike – Villas & Legends of Cap d’Antibes
 
-🧭 Application web interactive développée en React + Vite  
-📅 Mars 2025  
-👤 Auteur : Legrand Frédéric  
-🏷️ Projet intégré à la collection "Les Carnets Duo"
+🧭 Interactive web app built with React & Vite
+📅 March 2025
+👤 Author: Frédéric Legrand
+🏷️ Part of the “Les Carnets Duo” collection
 
----
+⸻
 
-## 🎯 Présentation
+🎯 Overview
 
-**Cultu Bike** accompagne une balade à vélo autour du Cap d’Antibes.  
-À chaque arrêt, l’application propose une **anecdote historique ou légendaire**, illustrée par des **photos** et accompagnée de **questions ou défis**.
+Cultu Bike guides you on a cultural bike tour around the Cap d’Antibes. At each stop, the app presents a historical or legendary anecdote, illustrated with photos and paired with engaging quizzes and challenges.
 
----
+✅ Features (live & in development)
+	•	🗺️ Interactive map with step-by-step geolocation
+	•	🏛️ Detailed profiles of villas and landmark sites on the Cap
+	•	📷 Integrated photos for every point of interest
+	•	❓ Mixed-format questions (free-text & multiple-choice) and interactive challenges
+	•	📍 QR-code access via printed guide or e-book
 
-## ✅ Fonctionnalités actuelles / en cours de développement
+🛠️ Technology Stack
+	•	React
+	•	Vite
+	•	OpenStreetMap
+	•	…and more to come!
 
-- 🗺️ Carte interactive avec géolocalisation des étapes
-- 🏛️ Fiches sur les villas et lieux emblématiques du Cap d’Antibes
-- 📷 Intégration de **photos illustratives** pour chaque point d’intérêt
-- ❓ Questions à choix multiples et défis interactifs
-- 📍 Accès via QR code depuis le guide papier ou l’ebook
+🔐 License & Rights
 
----
+“Les Carnets Duo” is an original creation by Frédéric Legrand. All textual, graphic, and digital content is protected under copyright.
+See LICENSE.md for full usage terms.
 
-## 🛠️ Technologies utilisées
+⸻
 
-- React
-- Vite
-- OpenStreetMap
-- [Autres à venir]
-
----
-
-## 🔐 Statut & droits
-
-**Les Carnets Duo** est une création originale de Legrand Frédéric, incluant des contenus textuels, graphiques et numériques, protégés par le droit d’auteur.
-
-📁 Voir le fichier `LICENSE.md` pour plus de détails sur les droits et usages.
-
----
-
-## 🧪 Lancer l’application localement
-
-```bash
-npm install
-npm run dev
+🧪 Running Locally
+npm install  
+npm run dev  

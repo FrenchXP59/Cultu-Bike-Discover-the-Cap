@@ -1,11 +1,10 @@
+// src/components/ScoreBoard.jsx
 import React, { useContext } from "react";
 import { GameContext } from "../GameContext.jsx";
 import { TimeContext } from "../TimeContext.jsx";
 import { FaBicycle } from "react-icons/fa";
 
-const ScoreBoard = ({ popupOpen }) => {
-  if (popupOpen) return null;
-
+const ScoreBoard = () => {
   const { score, answeredQuestions } = useContext(GameContext);
   const { time } = useContext(TimeContext);
 
@@ -16,13 +15,13 @@ const ScoreBoard = ({ popupOpen }) => {
     <div className="scoreboard-container">
       <h3>
         <FaBicycle style={{ marginRight: "8px", color: "#e67e22" }} />
-        Score : {score} point{score !== 1 ? "s" : ""}
+        Score: {score} point{score !== 1 ? "s" : ""}
       </h3>
       <p>
-        Temps : {minutes}m {seconds}s
+        Time: {minutes}m {seconds}s
       </p>
       <p>
-        Questions répondues : {answeredQuestions.length}
+        Questions answered: {answeredQuestions.length}
       </p>
     </div>
   );

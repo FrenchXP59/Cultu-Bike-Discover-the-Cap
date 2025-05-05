@@ -57,7 +57,7 @@ const PopupContent = React.memo(
             style={{ marginBottom: "8px" }}
           >
             <FaGift style={{ marginRight: 6 }} />
-            En savoir plus
+            Learn more
           </button>
         )}
 
@@ -75,7 +75,7 @@ const PopupContent = React.memo(
           className="btn btn-orange"
           style={{ display: "block", margin: "24px auto 0", width: "auto" }}
         >
-          🔙 Retour à la carte
+          🔙 Back to the map
         </button>
       </div>
     );
