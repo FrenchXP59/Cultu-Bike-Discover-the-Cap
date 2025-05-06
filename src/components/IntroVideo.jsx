@@ -11,7 +11,7 @@ const IntroVideo = ({ isMuted, onEnableSoundAndGeo, onEnterGame }) => {
     }
   }, [onEnableSoundAndGeo, onEnterGame]);
 
-  const baseUrl = "https://www.youtube.com/embed/u8QqFHwgDbI";
+  const baseUrl = "https://www.youtube.com/embed/OwhALXU6_kc";
   const params = [
     "autoplay=1",
     "controls=1",
