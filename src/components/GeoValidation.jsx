@@ -35,7 +35,7 @@ const GeoValidation = ({ targetLatitude, targetLongitude, pointReward = 1 }) => 
 
     if (dist <= 300) {
       setScore(s => s + pointReward);
-      setMessage(`✅ Bonus ! À ${Math.round(dist)} m du point.`);
+      setMessage(`✅ Bonus ! À ${Math.round(dist)} from the point.`);
       setValidated(true);
     } else {
       setMessage(`📏 À ${Math.round(dist)} m.🔍 Move closer to the spot to confirm your location`);
